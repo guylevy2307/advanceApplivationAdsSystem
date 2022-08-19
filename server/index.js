@@ -1,68 +1,41 @@
-// server.js
-require("dotenv").config();
-const express = require("express");
-const http = require("http");
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const UserRouter = require("./Routes/userRoutes");
+const PostRouter = require("./Routes/postRoutes");
+const CommentRouter = require("./Routes/commentRoutes");
+const CMSFunc = require("./Utils/most-popular-first-names");
+const {conversationRouter} = require("./Routes/conversationRoutes");
+const {messageRouter} = require("./Routes/messageRoutes");
+// const User = require("./Controllers/userController");
 
-const cors = require("cors"); // added
 
-const connectDB = require("./config/db");
+const port = process.env.port || 5000;
+const db = 'mongodb+srv://admin:1234@lulilanddb.j4tppp6.mongodb.net/?retryWrites=true&w=majority'
+dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 8000;
+app.use(bodyParser.urlencoded({extended: true}));
 
-// routes
-const ad = require("./routes/ad"); // added
-const admin = require("./routes/admin");
+const corsOptions ={
+    origin:'http://localhost:3000',
+    credentials:true,
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
 
-// cors
-app.use(cors({ origin: true, credentials: true })); // added
+app.use(express.json({ extended:true }));
+app.use(express.urlencoded({ extended:true }));
+// app.use(cors());
+app.use('/users', UserRouter);
+app.use('/posts', PostRouter);
+app.use('/comments', CommentRouter);
+app.use('/conversation', conversationRouter)
+app.use('/message', messageRouter)
 
-// connect database
-connectDB();
-
-// initialize middleware
-app.use(express.json({ extended: false }));
-app.get("/", (req, res) => res.send("Server up and running"));
-
-// use routes
-app.use("/api/ad", ad); // added
-app.use("/api/admin", admin); // added
-
-// setting up port
-
-const server = app.listen(PORT, () => {
-  console.log(`server is running on http://localhost:${PORT}`);
-});
-
-var io = require("socket.io")(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-  },
-});
-
-let clientsConnected = [];
-let amountOfClientsConnected = 0;
-
-io.on("connection", (socket) => {
-  socket.emit("stats", amountOfClientsConnected, clientsConnected); //sends the stats to the client, so it can be displayed on the dashboard
-
-  socket.on("screenConnect", (arg) => {
-    // checks if the new connection allready exists
-    if (!clientsConnected.includes(arg) && arg !== "'screen=0'") {
-      // or that its the admin screen
-      clientsConnected.push(arg);
-      amountOfClientsConnected = clientsConnected.length;
-    }
-    socket.emit("clients", amountOfClientsConnected, clientsConnected); //sends stats to Welcome.js
-
-    socket.on("disconnect", () => {
-      // finds the disconnected client and remove from the array
-      clientsConnected = clientsConnected.filter((a) => a !== arg);
-      amountOfClientsConnected = clientsConnected.length;
-      socket.emit("clients", amountOfClientsConnected, clientsConnected); // sends stats
-    });
-
-    console.log(clientsConnected);
-  });
-});
+app.get('/',(req, res) => {res.send('Im alive');});
+mongoose.connect(db,{ useUnifiedTopology: true, useNewUrlParser: true}).then(()=>app.listen(port, ()=>{
+    console.log(`server is running on port: ${port}`);
+})).catch((err)=>console.log('dont succeed to connect'));
