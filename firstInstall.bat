@@ -1,4 +1,3 @@
-#!/bin/bash
 cd client
 npm i --force
 cd ..
