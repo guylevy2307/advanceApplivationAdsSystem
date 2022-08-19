@@ -1,0 +1,16 @@
+.userTable {
+    height: 100%;
+    width: 100%;
+    margin-left: 0;
+    padding: 0;
+    display: flex;
+    overflow-y: scroll;
+}
+
+.table {
+    flex: 8;
+}
+
+.map {
+    flex: 4;
+}

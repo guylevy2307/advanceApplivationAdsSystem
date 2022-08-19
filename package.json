@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "ahocorasick": "^1.0.2",
+    "antd": "^4.21.7",
+    "axios": "^0.27.2",
+    "count-min-sketch": "^0.1.1",
+    "node-geocoder": "^4.2.0"
+  }
+}

@@ -1,0 +1,13 @@
+.form{
+    flex: 5.5;
+    margin-right: 100px;
+    padding: 40px;
+}
+
+.formWrapper{
+    padding: 20px;
+}
+
+.site-page-header {
+    border: 1px solid rgb(235, 237, 240);
+}

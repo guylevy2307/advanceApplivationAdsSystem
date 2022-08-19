@@ -1,0 +1,21 @@
+.ActionWrapper {
+    display: flex;
+}
+
+.Delete {
+    flex: 1;
+    margin: 3px;
+}
+
+.Update {
+    flex: 1;
+    margin: 3px;
+}
+
+.Delete:hover {
+    cursor: pointer;
+}
+
+.Update:hover {
+    cursor: pointer;
+}

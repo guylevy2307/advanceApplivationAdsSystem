@@ -1,0 +1,41 @@
+.adminSidebar {
+    height: 100%;
+    width: 100%;
+    background-color: #f0e68c;
+    overflow-y: scroll;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebarList{
+    height: auto;
+    width: 100%;
+    padding: 30px 0 0 0;
+}
+
+.sidebarList .row {
+    width: 100%;
+    height: 70px;
+    list-style-type: none;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    align-items: center;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-size: 28px;
+}
+
+.row #icon {
+    flex: 30%;
+    display: grid;
+    place-items: center;
+}
+.sidebarList .row:hover {
+    cursor: pointer;
+    background-color: #d4cb7b;
+}
+
+.row #title {
+    flex: 70%;
+}
