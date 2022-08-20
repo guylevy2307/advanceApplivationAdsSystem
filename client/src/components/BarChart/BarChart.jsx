@@ -1,5 +1,4 @@
-import CanvasJSReact from '../../lib/canvasjs.react';
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+import {CanvasJSChart} from 'canvasjs-react-charts'
 
 export default function BarChart({dataPoints, title}) {
 

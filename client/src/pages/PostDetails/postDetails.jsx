@@ -1,14 +1,13 @@
-import { Image, List } from 'antd';
-import React, {useEffect, useMemo, useState} from 'react';
 import 'antd/dist/antd.css';
-import Topbar from "../../components/Topbar/Topbar";
-import Sidebar from "../../components/Sidebar/Sidebar";
-import Rightbar from "../../components/Rightbar/Rightbar";
-import PostDetails from "../../components/PostDetails/PostDetails"
-import {useParams} from "react-router";
-import {SERVER_URL} from "../../services/HttpServiceHelper";
 import axios from "axios";
-import useMounted from "../../hooks/useMounted";
+import React, { useEffect, useMemo, useState } from 'react';
+import { useParams } from "react-router";
+import PostDetails from "../../components/PostDetails/PostDetails";
+import Rightbar from "../../components/Rightbar/Rightbar";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import Topbar from "../../components/Topbar/Topbar";
+import { SERVER_URL } from "../../services/HttpServiceHelper";
+import useMounted from "../../useMounted";
 
 const PostItem = () => {
     let postID = useParams().postID;

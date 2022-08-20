@@ -46,7 +46,7 @@ export default function Sidebar() {
                         return (
                             <>
                                 <li className="sidebarListItem"
-                                    key={key}
+                                    key={val.title}
                                     onClick={() => {
                                         if(val.forAdmin && user.isAdmin) {
                                             window.location.pathname = val.link
@@ -65,14 +65,7 @@ export default function Sidebar() {
                         )
                     })}
                 </ul>
-                {/*<button className="sidebarButton">Show More</button>*/}
                 <hr className="sidebarHr" />
-                {/*<ul className="sidebarFriendList">*/}
-                {/*    <h4 className="sidebarTitle">Online Friends</h4>*/}
-                {/*    {Users.map((u) => (*/}
-                {/*        <Online key={u.id} user={u} />*/}
-                {/*    ))}*/}
-                {/*</ul>*/}
             </div>
         </div>
     )

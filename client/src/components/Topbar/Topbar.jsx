@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 import axios from "axios";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import useMounted from '../../hooks/useMounted';
+import useMounted from '../../useMounted';
 import logoImage from '../../public/adsystem.png';
 import { SERVER_URL } from "../../services/HttpServiceHelper";
 import { getCurrentUser } from "../../Utils/currentUser";

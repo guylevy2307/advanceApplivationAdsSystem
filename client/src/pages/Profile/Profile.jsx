@@ -9,7 +9,7 @@ import {SERVER_URL} from "../../services/HttpServiceHelper";
 import { useParams } from "react-router";
 import {getUserByEmail} from "../../services/UserService";
 import {getCurrentUser} from "../../Utils/currentUser";
-import useMounted from "../../hooks/useMounted";
+import useMounted from "../../useMounted";
 import {notification, Button} from "antd";
 
 

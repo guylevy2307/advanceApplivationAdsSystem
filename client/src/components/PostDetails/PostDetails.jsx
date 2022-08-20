@@ -6,7 +6,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { format } from "timeago.js";
-import useMounted from "../../hooks/useMounted";
+import useMounted from "../../useMounted";
 import { SERVER_URL } from "../../services/HttpServiceHelper";
 
 const blobToBase64 = require('blob-to-base64')

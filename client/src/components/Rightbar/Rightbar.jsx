@@ -1,6 +1,6 @@
 import { Avatar } from "antd";
 import React, { useEffect, useMemo, useState } from "react";
-import useMounted from "../../hooks/useMounted";
+import useMounted from "../../useMounted";
 import { SERVER_URL } from "../../services/HttpServiceHelper";
 import { getUserFriends } from "../../services/UserService";
 import CloseFriend from "../CloseFriend/CloseFriend";
