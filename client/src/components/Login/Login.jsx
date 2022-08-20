@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import "./loginForm.css"
 import { notification } from "antd";
 import 'antd/dist/antd.css';
-import logoImage from '../Topbar/adsystem.png';
+import logoImage from '../../public/adsystem.png';
 
 export default function FormDialog() {
     const [open, setOpen] = useState(false)

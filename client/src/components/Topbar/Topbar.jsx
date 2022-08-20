@@ -12,7 +12,7 @@ import { FormControlLabel, FormGroup } from "@mui/material";
 import { Checkbox } from "antd";
 import useMounted from '../../hooks/useMounted';
 import { getCurrentUser } from "../../Utils/currentUser";
-import logoImage from './adsystem.png';
+import logoImage from '../../public/adsystem.png';
 
 export default function Topbar(callback, deps) {
     const isUserNameExists = localStorage.getItem("username");
