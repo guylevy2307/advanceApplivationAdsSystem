@@ -19,7 +19,7 @@ export default function AdminSidebar({data}){
                     <ul className="sidebarList">
                         {data.map((val,key) => {
                             return (
-                                <li className="row" key={key} onClick={val.action}>
+                                <li className="row" key={val.title} onClick={val.action}>
                                     <div id="icon">{val.icon}</div>
                                     <div id="title">{val.title}</div>
                                 </li>

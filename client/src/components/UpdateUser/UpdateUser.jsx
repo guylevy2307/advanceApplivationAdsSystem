@@ -20,10 +20,6 @@ export default function UpdateUser() {
     const [form] = Form.useForm();
     const [user, setUser] = useState();
     const email = useParams().userEmail;
-    const firstName = Form.useWatch('firstName', form)
-    const lastName = Form.useWatch('lastName', form)
-    const address = Form.useWatch('address', form)
-    const password = Form.useWatch('password', form)
     const isMounted = useMounted();
     const [file, setFile] = useState(user && user.profilePicture);
 

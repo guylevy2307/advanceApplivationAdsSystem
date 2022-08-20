@@ -54,11 +54,7 @@ export default function FormDialog() {
             openNotification('Email or password is wrong');
         }
     }
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
+    
     const handleClose = () => {
         setOpen(false);
     };

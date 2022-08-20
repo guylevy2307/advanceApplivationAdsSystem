@@ -1,8 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { signUp } from "../../services/UserService";
 import { SignUpContainer } from "./SignUpContainer";
 import "./SignUpPage.css";
-import { useNavigate } from "react-router-dom";
 
 export const SignUp = () => {
   const firstName = useRef();

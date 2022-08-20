@@ -1,20 +1,13 @@
 import { Avatar } from "antd";
 import React, { useEffect, useMemo, useState } from "react";
 import useMounted from "../../useMounted";
-import { SERVER_URL } from "../../services/HttpServiceHelper";
 import { getUserFriends } from "../../services/UserService";
 import CloseFriend from "../CloseFriend/CloseFriend";
 import "./rightbar.css";
 
-
-const USER_SERVICE = SERVER_URL + "/users"
-
-
 const Rightbar = (props) => {
     const [friendList, setFriendList] = useState([]);
     const isMounted = useMounted();
-    let email = props.profile.email;
-    console.log(props.profile.email)
     useEffect(() => {
         const initalizeFriendList = async () => {
             console.log("Props profile: " + props.profile.email)

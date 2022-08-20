@@ -46,7 +46,7 @@ export default function Sidebar() {
                         return (
                             <>
                                 <li className="sidebarListItem"
-                                    key={val.title}
+                                    key={val.title + key}
                                     onClick={() => {
                                         if(val.forAdmin && user.isAdmin) {
                                             window.location.pathname = val.link

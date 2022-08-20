@@ -9,8 +9,6 @@ import moment from "moment";
 import useMounted from "../../useMounted";
 import { SERVER_URL } from "../../services/HttpServiceHelper";
 
-const blobToBase64 = require('blob-to-base64')
-
 const Editor = ({ onChange, onSubmit, submitting, value }) => (
     <>
         <Form.Item>
