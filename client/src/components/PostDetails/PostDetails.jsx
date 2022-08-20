@@ -5,7 +5,7 @@ import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { format } from "timeago.js";
+import moment from "moment";
 import useMounted from "../../useMounted";
 import { SERVER_URL } from "../../services/HttpServiceHelper";
 
@@ -93,7 +93,8 @@ const PostDetails = (props) => {
                      <span className="postUsername">
                                 {newUser && newUser.firstName}
                             </span>
-                     <span className="postDate">{format(updatedPost && updatedPost.creationDate)}</span>
+                     {(updatedPost) ? <span className="postDate">{moment().subtract(moment.unix(updatedPost.creationDate)).hours() + " hours ago"}</span> : <span></span>}
+
                  </div>
                  <Image
                      width={200}

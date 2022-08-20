@@ -2,7 +2,7 @@ import { MoreVert } from "@mui/icons-material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { format } from "timeago.js";
+import moment from 'moment'
 import "./post.css";
 
 const {SERVER_URL} = require("../../services/HttpServiceHelper");
@@ -37,7 +37,7 @@ export default function Post({ post }) {
                         <span className="postUsername">
                             {user.firstName}
                         </span>
-                        <span className="postDate">{format(post.creationDate)}</span>
+                        <span className="postDate">{moment.unix(post.creationDate).toLocaleString()}</span>
                     </div>
                     <div className="postTopRight">
                         <MoreVert />
@@ -46,11 +46,6 @@ export default function Post({ post }) {
                 <div className="postCenter">
                     <span className="postText">{post.content}</span>
                         <img className="postImg" src={post.image} alt="" />
-                </div>
-                <div className="postBottom">
-                    {/*<div className="postBottomRight">*/}
-                    {/*    <span className="postCommentText">{post.comment} comments</span>*/}
-                    {/*</div>*/}
                 </div>
             </div>
         </div>
