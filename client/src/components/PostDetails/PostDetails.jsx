@@ -1,8 +1,6 @@
 import React, {useEffect, useMemo, useRef, useState} from "react";
-import {Button, Form, Input, PageHeader, notification, Avatar, Image, List, Comment} from "antd";
+import {Button, Form, PageHeader, notification, Avatar, Image, List, Comment} from "antd";
 import 'antd/dist/antd.css';
-import {getCurrentUser} from "../../Utils/currentUser";
-import {PermMedia} from "@material-ui/icons";
 import {SERVER_URL} from "../../services/HttpServiceHelper";
 import axios from "axios";
 import {Link} from "react-router-dom";

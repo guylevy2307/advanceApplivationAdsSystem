@@ -1,6 +1,5 @@
 import "./post.css";
-import { MoreVert } from "@material-ui/icons";
-//import { Users } from "../../dummyData";
+import { MoreVert } from "@mui/icons-material";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Link, useNavigate} from "react-router-dom";

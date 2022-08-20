@@ -1,8 +1,7 @@
 import "./topbar.css"
-import { Search, Person, Chat, Notifications } from "@material-ui/icons"
-import { Button } from '@material-ui/core'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import TextField from "@material-ui/core/TextField";
+import {Person} from "@mui/icons-material"
+import {Link, useLocation, useNavigate} from 'react-router-dom';
+import {Button, TextField} from "@mui/material"
 import { useCallback, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import 'antd/dist/antd.css';

@@ -10,8 +10,8 @@ import { useParams } from "react-router";
 import {getUserByEmail} from "../../services/UserService";
 import {getCurrentUser} from "../../Utils/currentUser";
 import useMounted from "../../hooks/useMounted";
-import {Button} from "@material-ui/core";
-import {notification} from "antd";
+import {notification, Button} from "antd";
+
 
 
 const USER_SERVICE = SERVER_URL + "/users"

@@ -1,19 +1,9 @@
 import "./sidebar.css"
-import HomeIcon from '@mui/icons-material/Home';
-import {Users} from "../../dummyData"
 import {
     RssFeed,
     Chat,
-    PlayCircleFilledOutlined,
-    Group,
-    Bookmark,
-    HelpOutline,
-    WorkOutline,
-    Event
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
-import CloseFriend from "../CloseFriend/CloseFriend";
-import Online from "../Online/Online";
 import {getCurrentUser} from "../../Utils/currentUser";
 import {notification} from "antd";
 

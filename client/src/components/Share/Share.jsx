@@ -1,14 +1,10 @@
 import "./share.css";
 import {
     PermMedia,
-    Label,
-    Room,
-    EmojiEmotions,
     Cancel,
-} from "@material-ui/icons";
-import { useEffect, useRef, useState } from "react";
+} from "@mui/icons-material";
+import { useRef, useState } from "react";
 import axios from "axios";
-import getUserByEmail from "../../services/UserService";
 import { getCurrentUser } from "../../Utils/currentUser";
 
 const { SERVER_URL } = require("../../services/HttpServiceHelper");

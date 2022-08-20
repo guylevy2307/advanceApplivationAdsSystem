@@ -1,6 +1,5 @@
 import React, { createRef, useRef, useState } from 'react';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import {Button, TextField} from "@mui/material"
 import validator from "validator/es";
 import { getUserByEmail, login, signUp } from "../../services/UserService";
 import { useNavigate } from "react-router-dom";

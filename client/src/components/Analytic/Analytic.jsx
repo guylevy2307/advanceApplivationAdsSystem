@@ -1,7 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react'
 import PieChart from "../PieChart/PieChart";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+// import TextField from "@material-ui/core/TextField";
+// import Button from "@material-ui/core/Button";
+import {Button, TextField} from "@mui/material"
 import { spacing } from '@mui/system';
 import {getDistributionTag, getPostAveragePerUser} from "../../services/PostService";
 import {Box} from "@mui/material";
