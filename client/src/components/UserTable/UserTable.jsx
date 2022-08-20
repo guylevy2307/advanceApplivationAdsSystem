@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react'
-import './userTable.css'
-import { DataGrid} from '@mui/x-data-grid';
-import {deleteUserByEmail, getAllAddresses, getAllUsers} from "../../services/UserService";
 import ClearIcon from '@mui/icons-material/Clear';
 import DoneIcon from '@mui/icons-material/Done';
-import CustomGoogleMap from "../GoogleMap/CustomGoogleMap";
 import CircularProgress from '@mui/material/CircularProgress';
+import { DataGrid } from '@mui/x-data-grid';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { deleteUserByEmail, getAllAddresses, getAllUsers } from "../../services/UserService";
 import ActionList from "../ActionList/ActionList";
-import {useNavigate} from "react-router-dom";
+import CustomGoogleMap from "../GoogleMap/CustomGoogleMap";
+import './userTable.css';
 
 
 

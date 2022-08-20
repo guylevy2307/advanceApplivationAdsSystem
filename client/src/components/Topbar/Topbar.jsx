@@ -1,17 +1,16 @@
-import "./topbar.css"
-import {Person} from "@mui/icons-material"
-import {Link, useLocation, useNavigate} from 'react-router-dom';
-import {Button, TextField} from "@mui/material"
-import { useCallback, useEffect, useMemo, useState } from "react";
-import axios from "axios";
-import 'antd/dist/antd.css';
-import { SERVER_URL } from "../../services/HttpServiceHelper";
-import SearchList from "./SearchList";
-import { FormControlLabel, FormGroup } from "@mui/material";
+import { Person } from "@mui/icons-material";
+import { Button, FormControlLabel, TextField } from "@mui/material";
 import { Checkbox } from "antd";
+import 'antd/dist/antd.css';
+import axios from "axios";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import useMounted from '../../hooks/useMounted';
-import { getCurrentUser } from "../../Utils/currentUser";
 import logoImage from '../../public/adsystem.png';
+import { SERVER_URL } from "../../services/HttpServiceHelper";
+import { getCurrentUser } from "../../Utils/currentUser";
+import SearchList from "./SearchList";
+import "./topbar.css";
 
 export default function Topbar(callback, deps) {
     const isUserNameExists = localStorage.getItem("username");

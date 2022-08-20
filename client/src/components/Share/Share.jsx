@@ -1,11 +1,10 @@
-import "./share.css";
 import {
-    PermMedia,
-    Cancel,
+    Cancel, PermMedia
 } from "@mui/icons-material";
-import { useRef, useState } from "react";
 import axios from "axios";
+import { useRef, useState } from "react";
 import { getCurrentUser } from "../../Utils/currentUser";
+import "./share.css";
 
 const { SERVER_URL } = require("../../services/HttpServiceHelper");
 const POST_SERVICE = SERVER_URL + '/posts';

@@ -1,12 +1,12 @@
-import React, { createRef, useRef, useState } from 'react';
-import {Button, TextField} from "@mui/material"
-import validator from "validator/es";
-import { getUserByEmail, login, signUp } from "../../services/UserService";
-import { useNavigate } from "react-router-dom";
-import "./loginForm.css"
+import { Button, TextField } from "@mui/material";
 import { notification } from "antd";
 import 'antd/dist/antd.css';
+import React, { useRef, useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import validator from "validator/es";
 import logoImage from '../../public/adsystem.png';
+import { getUserByEmail, login } from "../../services/UserService";
+import "./loginForm.css";
 
 export default function FormDialog() {
     const [open, setOpen] = useState(false)

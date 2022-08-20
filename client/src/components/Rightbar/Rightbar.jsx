@@ -1,18 +1,10 @@
-import "./rightbar.css";
-import { Users } from "../../dummyData";
-import Online from "../Online/Online";
-import CloseFriend from "../CloseFriend/CloseFriend";
-import { getUserFriends } from "../../services/UserService";
-import { useContext, useState, useEffect, useMemo } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import { Link } from "react-router-dom";
-import { getCurrentUser } from "../../Utils/currentUser"
-import axios from "axios";
-import { SERVER_URL } from "../../services/HttpServiceHelper";
-import { useParams } from "react-router";
-import React from "react";
 import { Avatar } from "antd";
+import React, { useEffect, useMemo, useState } from "react";
 import useMounted from "../../hooks/useMounted";
+import { SERVER_URL } from "../../services/HttpServiceHelper";
+import { getUserFriends } from "../../services/UserService";
+import CloseFriend from "../CloseFriend/CloseFriend";
+import "./rightbar.css";
 
 
 const USER_SERVICE = SERVER_URL + "/users"

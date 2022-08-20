@@ -1,11 +1,10 @@
-import "./sidebar.css"
 import {
-    RssFeed,
-    Chat,
+    Chat, RssFeed
 } from "@mui/icons-material";
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
-import {getCurrentUser} from "../../Utils/currentUser";
-import {notification} from "antd";
+import { notification } from "antd";
+import { getCurrentUser } from "../../Utils/currentUser";
+import "./sidebar.css";
 
 
 const SidebarData = [

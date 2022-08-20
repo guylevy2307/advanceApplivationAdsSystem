@@ -1,7 +1,5 @@
-import React , { useState } from 'react'
-import {SERVER_URL} from "../../services/HttpServiceHelper";
-import axios from "axios";
-import {Link} from "react-router-dom";
+import React from 'react';
+import { Link } from "react-router-dom";
 
 const SearchList = (props) => {
     const {userList, isFirstName, isLastName, isEmail} = props

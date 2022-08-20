@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react'
-import "./message.css"
-import {getUserByEmail} from "../../services/UserService";
+import React, { useEffect, useState } from 'react';
+import { getUserByEmail } from "../../services/UserService";
+import "./message.css";
 
 const toTimestamp = (strDate) => {
     const dt = new Date(strDate).getTime();

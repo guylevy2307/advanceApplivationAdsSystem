@@ -1,10 +1,9 @@
-import "./post.css";
 import { MoreVert } from "@mui/icons-material";
-import {useEffect, useState} from "react";
 import axios from "axios";
-import {Link, useNavigate} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { format } from "timeago.js";
-import PersonIcon from '@mui/icons-material/Person';
+import "./post.css";
 
 const {SERVER_URL} = require("../../services/HttpServiceHelper");
 //const USER_SERVICE = SERVER_URL + `/users/${post.userId}`;

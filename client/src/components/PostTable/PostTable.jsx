@@ -1,12 +1,9 @@
-import React, {useEffect, useState} from 'react'
-import './postTable.css'
-import { DataGrid} from '@mui/x-data-grid';
-import ClearIcon from '@mui/icons-material/Clear';
-import DoneIcon from '@mui/icons-material/Done';
-import {deletePostById, getAllPosts} from "../../services/PostService";
-import {deleteUserByEmail, getAllUsers} from "../../services/UserService";
-import {useNavigate} from "react-router-dom";
+import { DataGrid } from '@mui/x-data-grid';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { deletePostById, getAllPosts } from "../../services/PostService";
 import ActionList from "../ActionList/ActionList";
+import './postTable.css';
 
 export default function PostTable(){
     const [allPostList,setAllPostList] = useState()
