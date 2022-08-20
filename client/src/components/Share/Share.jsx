@@ -9,9 +9,9 @@ import {
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import getUserByEmail from "../../services/UserService";
-import {getCurrentUser} from "../../Utils/currentUser";
+import { getCurrentUser } from "../../Utils/currentUser";
 
-const {SERVER_URL} = require("../../services/HttpServiceHelper");
+const { SERVER_URL } = require("../../services/HttpServiceHelper");
 const POST_SERVICE = SERVER_URL + '/posts';
 
 const blobToBase64 = require('blob-to-base64')
@@ -46,7 +46,7 @@ export default function Share() {
                         user.allPostIDs = posts;
                         localStorage.setItem("user", JSON.stringify(user));
                         window.location.reload();
-                    } catch (err) {}
+                    } catch (err) { }
                 }
             })
 
@@ -66,7 +66,7 @@ export default function Share() {
                         alt=""
                     />
                     <input
-                        placeholder={"What's in your mind " + getCurrentUser().firstName + "?"}
+                        placeholder={"What kind of ad whould you like to post " + getCurrentUser().firstName + "?"}
                         className="shareInput"
                         ref={content}
                     />

@@ -2,16 +2,16 @@ import "./rightbar.css";
 import { Users } from "../../dummyData";
 import Online from "../Online/Online";
 import CloseFriend from "../CloseFriend/CloseFriend";
-import {getUserFriends} from "../../services/UserService";
-import {useContext, useState, useEffect, useMemo} from "react";
+import { getUserFriends } from "../../services/UserService";
+import { useContext, useState, useEffect, useMemo } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
-import {getCurrentUser} from "../../Utils/currentUser"
+import { getCurrentUser } from "../../Utils/currentUser"
 import axios from "axios";
-import {SERVER_URL} from "../../services/HttpServiceHelper";
-import {useParams} from "react-router";
+import { SERVER_URL } from "../../services/HttpServiceHelper";
+import { useParams } from "react-router";
 import React from "react";
-import {Avatar} from "antd";
+import { Avatar } from "antd";
 import useMounted from "../../hooks/useMounted";
 
 
@@ -27,7 +27,7 @@ const Rightbar = (props) => {
         const initalizeFriendList = async () => {
             console.log("Props profile: " + props.profile.email)
             const res = await getUserFriends(props.profile.email)
-            if(isMounted)
+            if (isMounted)
                 setFriendList(res)
         }
         props.profile && isMounted && initalizeFriendList()
@@ -85,7 +85,7 @@ const Rightbar = (props) => {
                     {/*</div>*/}
 
                     <hr className="rightbarHr" />
-                    <h4 className="rightbarTitle">User Friends ({friends.length})</h4>
+                    <h4 className="rightbarTitle">User Connections: ({friends.length})</h4>
                     <ul className="rightbarFriendList">
                         {friends.map((u) => (
                             <CloseFriend key={u._id} user={u} />
