@@ -11,11 +11,11 @@ const { conversationRouter } = require("./Routes/conversationRoutes");
 const { messageRouter } = require("./Routes/messageRoutes");
 // const User = require("./Controllers/userController");
 
-
-const port = process.env.port || 5000;
-const db = 'mongodb+srv://admin:1234@lulilanddb.j4tppp6.mongodb.net/?retryWrites=true&w=majority'
-//const db = process.env.MONGO_URI; 
 dotenv.config();
+const port = process.env.port || 5000;
+//const db = 'mongodb+srv://admin:1234@lulilanddb.j4tppp6.mongodb.net/?retryWrites=true&w=majority'
+const db = process.env.MONGO_URI;
+
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
