@@ -24,35 +24,35 @@ export const SignUpForm = ({
         <form onSubmit={onSubmit}>
           <TextField
             name="email"
-            floatingLabelText="email"
+            label="Email Address"
             value={user.email}
             onChange={onChange}
-            errorText={errors.email}
+            helperText={errors ? errors.email : " "}
           />
           <br />
           <TextField
             name="firstName"
-            floatingLabelText="first name"
+            label="First Name"
             value={user.firstName}
             onChange={onChange}
-            errorText={errors.firstName}
+            helperText={errors ? errors.firstName : " "}
           />
           <br />
           <TextField
             name="lastName"
-            floatingLabelText="last name"
+            label="Last Name"
             value={user.lastName}
             onChange={onChange}
-            errorText={errors.lastName}
+            helperText={errors ? errors.lastName : " "}
           />
           <br />
           <TextField
             type={type}
             name="password"
-            floatingLabelText="password"
+            label="Password"
             value={user.password}
             onChange={onPwChange}
-            errorText={errors.password}
+            helperText={errors ? errors.password : " "}
           />
           <br />
           <div className="pwStrRow">
@@ -68,7 +68,9 @@ export const SignUpForm = ({
                     left: "50%",
                     transform: "translateX(-50%)",
                   }}
-                />
+                >
+                  {btnTxt}
+                </Button>
               </div>
             )}
           </div>
@@ -76,10 +78,11 @@ export const SignUpForm = ({
           <Button
             variant="contained"
             className="signUpSubmit"
-            primary={true}
             type="submit"
             label="submit"
-          />
+          >
+            Sumbit
+          </Button>
         </form>
         <p>
           Aleady have an account? <br />
