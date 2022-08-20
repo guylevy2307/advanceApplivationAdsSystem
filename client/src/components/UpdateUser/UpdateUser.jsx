@@ -1,6 +1,6 @@
 import { PermMedia } from "@mui/icons-material";
 import { Button, Form, Input, notification, PageHeader } from "antd";
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css'
 import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router";

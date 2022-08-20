@@ -1,4 +1,4 @@
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css'
 import React from 'react';
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Topbar from "../../components/Topbar/Topbar";

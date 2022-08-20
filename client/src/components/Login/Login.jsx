@@ -1,6 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import { notification } from "antd";
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css'
 import React, { useRef, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import validator from "validator/es";
@@ -54,7 +54,7 @@ export default function FormDialog() {
             openNotification('Email or password is wrong');
         }
     }
-    
+
     const handleClose = () => {
         setOpen(false);
     };

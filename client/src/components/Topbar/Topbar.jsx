@@ -1,7 +1,7 @@
 import { Person } from "@mui/icons-material";
 import { Button, FormControlLabel, TextField } from "@mui/material";
 import { Checkbox } from "antd";
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css'
 import axios from "axios";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';

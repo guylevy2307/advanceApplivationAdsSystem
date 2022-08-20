@@ -1,5 +1,5 @@
 import { Avatar, Button, Comment, Form, Image, List, notification, PageHeader } from "antd";
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css'
 import TextArea from "antd/es/input/TextArea";
 import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
