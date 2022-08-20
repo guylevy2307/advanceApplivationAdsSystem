@@ -1,16 +1,15 @@
-import "./profile.css";
-import Topbar from "../../components/Topbar/Topbar";
-import Sidebar from "../../components/Sidebar/Sidebar";
+import { Button, notification } from "antd";
+import axios from "axios";
+import { useEffect, useMemo, useState } from "react";
+import { useParams } from "react-router";
 import Feed from "../../components/Feed/Feed";
 import Rightbar from "../../components/Rightbar/Rightbar";
-import {createContext, useEffect, useMemo, useState} from "react";
-import axios from "axios";
-import {SERVER_URL} from "../../services/HttpServiceHelper";
-import { useParams } from "react-router";
-import {getUserByEmail} from "../../services/UserService";
-import {getCurrentUser} from "../../Utils/currentUser";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import Topbar from "../../components/Topbar/Topbar";
+import { SERVER_URL } from "../../services/HttpServiceHelper";
 import useMounted from "../../useMounted";
-import {notification, Button} from "antd";
+import { getCurrentUser } from "../../Utils/currentUser";
+import "./profile.css";
 
 
 
@@ -25,7 +24,6 @@ export default function Profile() {
 
     useEffect( () => {
         const fetchUser = async () => {
-            //const response = await getUserByEmail(userEmail);
             const response = await axios.get( USER_SERVICE + `/${userEmail}`)
             const { data } = response;
             console.log(data)
@@ -34,7 +32,6 @@ export default function Profile() {
         isMounted && fetchUser()
     },[userEmail, isMounted]);
 
-    //console.log(post.images)
     const newUser = useMemo(() => user || {}, [user]);
     console.log(newUser.email)
 

@@ -8,7 +8,6 @@ const SearchList = (props) => {
         if (props.input === '') {
             return true;
         }
-        //return the item which contains the user input
         else {
             let toSearch = "";
             if(isFirstName)

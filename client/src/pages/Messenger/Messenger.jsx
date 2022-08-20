@@ -1,20 +1,15 @@
-import React, {useEffect, useRef, useState} from 'react'
-import {io} from "socket.io-client"
-import './messenger.css'
-import Topbar from "../../components/Topbar/Topbar";
+import React, { useEffect, useRef, useState } from 'react';
+import { io } from "socket.io-client";
+import ChatOnline from "../../components/ChatOnline/ChatOnline";
 import Conversation from "../../components/Conversations/Conversations";
 import Message from "../../components/Message/Message";
-import ChatOnline from "../../components/ChatOnline/ChatOnline";
+import Topbar from "../../components/Topbar/Topbar";
+import './messenger.css';
 
-import {Users} from "../../dummyData"
-import {getSpecificConversation} from "../../services/ConversationService";
-import {getUserFriends} from "../../services/UserService";
-import {fetchConversationMessages, sendMessage} from "../../services/MessageService";
-import {getCurrentUser} from "../../Utils/currentUser";
-
-// --------------------------------------------------
-// TODO: read current user id from local storage
-// --------------------------------------------------
+import { getSpecificConversation } from "../../services/ConversationService";
+import { fetchConversationMessages, sendMessage } from "../../services/MessageService";
+import { getUserFriends } from "../../services/UserService";
+import { getCurrentUser } from "../../Utils/currentUser";
 
 
 let currentMessagesBackup = null
@@ -26,7 +21,6 @@ export default function Messenger() {
     const [friendList, setFriendList] = useState([])
     const [currentConversationId, setCurrentConversationId] = useState(null)
     const [currentMessages, setCurrentMessages] = useState([])
-    //const [arrivalMessage, setArrivalMessage] = useState(null)
     const socket = useRef()
     const scrollRef = useRef()
     const newMessageContent = useRef()
@@ -69,7 +63,6 @@ export default function Messenger() {
                 _id: Date.now().toString()
             }
             updateMessagesIfNecessary(newMsg)
-            //console.log(arrivalMessage)
         })
         socket.current.on("getUsers", data => {
             const onlineEmail = data.map(row => row.userEmail)
@@ -80,11 +73,7 @@ export default function Messenger() {
         socket.current.emit("addUser",currentUserEmail)
         socket.current.emit("getOnline", currentUserEmail)
     },[])
-    // useEffect(()=>{
-    //     arrivalMessage && arrivalMessage?.senderEmail === selectedFriendEmail &&
-    //         setCurrentMessages([...currentMessages, arrivalMessage])
-    // }, [arrivalMessage, currentConversationId])
-
+    
     //fetch message list
     useEffect(()=>{
         const initalizeMessageList = async () => {

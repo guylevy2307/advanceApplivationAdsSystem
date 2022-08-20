@@ -10,11 +10,6 @@ import { getCurrentUser } from "../../Utils/currentUser";
 
 const blobToBase64 = require('blob-to-base64')
 
-
-function AntDesignOutlined() {
-    return null;
-}
-
 const openNotification = (content) => {
     notification.open({
         message: content,
@@ -22,11 +17,6 @@ const openNotification = (content) => {
 };
 
 export default function UpdateUser() {
-    // const firstName = useRef();
-    // const lastName = useRef();
-    // const password = useRef();
-    // const address = useRef();
-    // const profilePicture = useRef();
     const [form] = Form.useForm();
     const [user, setUser] = useState();
     const email = useParams().userEmail;

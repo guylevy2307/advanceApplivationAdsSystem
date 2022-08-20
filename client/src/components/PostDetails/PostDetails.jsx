@@ -33,8 +33,6 @@ const openNotification = (content) => {
 const PostDetails = (props) => {
     const postID = useParams().postID;
     const [comments, setComments] = useState([]);
-    // const [user, setUser] = useState({})
-    // const [post, setPost] = useState({})
     const [submitting, setSubmitting] = useState(false);
     const [value, setValue] = useState('');
     const isMounted = useMounted();

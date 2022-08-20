@@ -17,9 +17,5 @@ const EditUser = () => {
             </div>
         </>
     );
-
-
 };
-// todo add profile picture
-
 export default EditUser;

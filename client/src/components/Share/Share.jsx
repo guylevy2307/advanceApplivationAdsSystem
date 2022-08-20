@@ -13,7 +13,6 @@ const blobToBase64 = require('blob-to-base64')
 
 
 export default function Share() {
-    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const content = useRef();
     const [file, setFile] = useState(null);
     const user = getCurrentUser();
@@ -28,7 +27,6 @@ export default function Share() {
             const fileName = Date.now() + file.name;
             data.append("name", fileName);
             data.append("file", file);
-            //newPost.img = fileName;
             blobToBase64.default(file, async function (error, base64) {
                 if (!error) {
                     try {
@@ -44,11 +42,7 @@ export default function Share() {
                     } catch (err) { }
                 }
             })
-
-            // try {
-            //     await axios.post("/:", data);
-            // } catch (err) {}
-        }
+                }
     };
 
     return (
@@ -86,18 +80,6 @@ export default function Share() {
                                 onChange={(e) => setFile(e.target.files[0])}
                             />
                         </label>
-                        {/*<div className="shareOption">*/}
-                        {/*    <Label htmlColor="blue" className="shareIcon" />*/}
-                        {/*    <span className="shareOptionText">Tag</span>*/}
-                        {/*</div>*/}
-                        {/*<div className="shareOption">*/}
-                        {/*    <Room htmlColor="green" className="shareIcon" />*/}
-                        {/*    <span className="shareOptionText">Location</span>*/}
-                        {/*</div>*/}
-                        {/*<div className="shareOption">*/}
-                        {/*    <EmojiEmotions htmlColor="goldenrod" className="shareIcon" />*/}
-                        {/*    <span className="shareOptionText">Feelings</span>*/}
-                        {/*</div>*/}
                     </div>
                     <button className="shareButton" type="submit">
                         Share

@@ -6,7 +6,6 @@ import { format } from "timeago.js";
 import "./post.css";
 
 const {SERVER_URL} = require("../../services/HttpServiceHelper");
-//const USER_SERVICE = SERVER_URL + `/users/${post.userId}`;
 
 
 export default function Post({ post }) {
@@ -16,13 +15,11 @@ export default function Post({ post }) {
     const fetchUser = async () => {
         const response = await axios.get(SERVER_URL + `/users/${post.userEmail}`);
         const { data } = response;
-        //console.log(data);
         setUser(data);
     };
     useEffect( () => {
         fetchUser();
     }, [post.userEmail]);
-    //console.log(user)
     console.log(post.images)
 
     return (
@@ -49,7 +46,6 @@ export default function Post({ post }) {
                 <div className="postCenter">
                     <span className="postText">{post.content}</span>
                         <img className="postImg" src={post.image} alt="" />
-                    {/*<span className="postContent">{post.content}</span>*/}
                 </div>
                 <div className="postBottom">
                     {/*<div className="postBottomRight">*/}
