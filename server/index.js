@@ -13,8 +13,6 @@ const { messageRouter } = require("./Routes/messageRoutes");
 
 dotenv.config();
 const port = process.env.port || 5001;
-//const db = 'mongodb+srv://admin:1234@lulilanddb.j4tppp6.mongodb.net/?retryWrites=true&w=majority'
-const db = process.env.MONGO_URI;
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -38,8 +36,12 @@ app.use("/message", messageRouter);
 app.get("/", (req, res) => {
   res.send("Im alive");
 });
+
 mongoose
-  .connect(db, { useUnifiedTopology: true, useNewUrlParser: true })
+  .connect(process.env.MONGO_URI, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  })
   .then(() =>
     app.listen(port, () => {
       console.log(`server is running on port: ${port}`);

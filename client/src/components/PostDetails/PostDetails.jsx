@@ -50,6 +50,10 @@ const PostDetails = (props) => {
                 },
             ]);
         }, 1000);
+        console.log(post);
+        console.log(value);
+        const responseCreate = await axios.post(SERVER_URL + `/comments/`,{postID: post._id, content: value });
+
         const response = await axios.get(SERVER_URL + `/comments/post/${post._id}`);
         if (response.status === 200) {
             openNotification('Added comment successfully!');
