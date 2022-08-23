@@ -10,7 +10,6 @@ const Rightbar = (props) => {
     const isMounted = useMounted();
     useEffect(() => {
         const initalizeFriendList = async () => {
-            console.log("Props profile: " + props.profile.email)
             const res = await getUserFriends(props.profile.email)
             if (isMounted)
                 setFriendList(res)

@@ -14,7 +14,7 @@ import { getCurrentUser } from "./Utils/currentUser";
 
 function App() {
   const user = getCurrentUser();
-  console.log("User in App.js" + user);
+
   return (
     <div className="App">
       <BrowserRouter>
