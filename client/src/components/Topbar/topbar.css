@@ -24,10 +24,12 @@
 .topbarCenter {
     flex: 5;
     padding-left: 10px;
+    display: flex;
+    flex-direction: row;
 }
 
 .searchbar {
-    width: 100%;
+    width: 80%;
     height: 30px;
     border-radius: 30px;
     display: block;
@@ -36,7 +38,7 @@
 }
 
 .userRow {
-    width: 570px;
+    width: 370px;
     background-color: white;
 }
 
@@ -103,4 +105,11 @@
     border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
+}
+
+.listSearch {
+    width: 20%;
+    height: 30px;
+    border-radius: 30px;
+    align-items: right;
 }

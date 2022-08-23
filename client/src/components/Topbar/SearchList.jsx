@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 const SearchList = (props) => {
-    const {userList, isFirstName, isLastName, isEmail} = props
+    const { userList, isFirstName, isLastName, isEmail } = props
 
     const filteredData = (userList || []).filter((el) => {
         if (props.input === '') {
@@ -10,11 +10,11 @@ const SearchList = (props) => {
         }
         else {
             let toSearch = "";
-            if(isFirstName)
+            if (isFirstName)
                 toSearch += el.firstName;
-            if(isLastName)
+            if (isLastName)
                 toSearch += el.lastName;
-            if(isEmail)
+            if (isEmail)
                 toSearch += el.email;
 
             return toSearch.toLowerCase().includes(props.input)
@@ -22,7 +22,7 @@ const SearchList = (props) => {
     })
     return (
         <div className="searchList">
-            {filteredData.length  > 0 && filteredData.map((u) => (
+            {filteredData.length > 0 && filteredData.map((u) => (
                 <div className="userRow">
                     <Link to={`/profile/${u.email}`}>
                         <img
@@ -31,9 +31,12 @@ const SearchList = (props) => {
                             alt=""
                         />
                     </Link>
+
                     <span className="postUsername">
-                            {u.firstName + " " + u.lastName}
+                        {u.firstName + " " + u.lastName + " Email: " + u.email}
                     </span>
+
+
                 </div>
             ))}
         </div>

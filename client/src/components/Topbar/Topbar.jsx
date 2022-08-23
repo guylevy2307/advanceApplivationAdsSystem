@@ -19,9 +19,9 @@ export default function Topbar(callback, deps) {
     const nav = useNavigate();
     const [inputText, setInputText] = useState("");
     const [users, setUsers] = useState([]);
-    const [isFirstName, setIsFirstName] = useState(true);
-    const [isLastName, setIsLastName] = useState(true);
-    const [isEmail, setIsEmail] = useState(true);
+    var [isFirstName, setIsFirstName] = useState(true);
+    var [isLastName, setIsLastName] = useState(true);
+    var [isEmail, setIsEmail] = useState(true);
 
     const isMounted = useMounted();
 
@@ -40,18 +40,44 @@ export default function Topbar(callback, deps) {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            console.log('Yaniv')
             const response = await axios.get(SERVER_URL + `/users/`);
             const { data } = response;
-            console.log({ data });
             if (isMounted) setUsers(data);
         };
         isMounted && fetchUsers();
     }, [isMounted]);
 
-    console.log("Users " + users.length)
 
     const updatedUsers = useMemo(() => users || [], [users])
+
+    const [option, setOption] = useState()
+
+    function handleChange(event) {
+        setOption(event.target.value)
+        var choose = event.target.value;
+        if (choose == 1) {
+            isFirstName = false;
+            isLastName = false;
+            isEmail = true;
+        } else if (choose == 2) {
+            isFirstName = true;
+            isLastName = false;
+            isEmail = false;
+        } else if (choose == 3) {
+            isFirstName = false;
+            isLastName = false;
+            isEmail = true;
+        } else if (choose == 4) {
+            isFirstName = true;
+            isLastName = true;
+            isEmail = false;
+        } else if (choose == 5) {
+            isFirstName = true;
+            isLastName = true;
+            isEmail = true;
+        }
+        console.log(isFirstName + " " + isLastName + " " + isEmail)
+    }
 
     return (
         <div className="topbarContainer">
@@ -64,7 +90,7 @@ export default function Topbar(callback, deps) {
             </div>
             <div className="topbarCenter">
                 <div className="searchbar">
-                    <TextField placeholder="Search for friends!"
+                    <TextField placeholder="Search for new friends..."
                         size="small"
                         label="Search"
                         variant="outlined"
@@ -76,6 +102,16 @@ export default function Topbar(callback, deps) {
                     {updatedUsers.length > 0 && inputText && inputText.length > 0 && <SearchList input={inputText} userList={updatedUsers} isFirstName={isFirstName}
                         isLastName={isLastName} isEmail={isEmail} />}
                 </div>
+                <select className="listSearch" onChange={handleChange} >
+                    <option value="1">Search By:</option>
+                    <option value="1">Email</option>
+                    <option value="2">First Name</option>
+                    <option value="3">Last Name</option>
+                    <option value="4">Full Name</option>
+                    <option value="5">All</option>
+                </select>
+
+
             </div>
             <div className="topbarRight">
 
