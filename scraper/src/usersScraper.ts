@@ -3,7 +3,7 @@ import { chromium } from "playwright";
 export class NamesScraper {
   private readonly ADS_URL: string =
     "https://private.b144.co.il/PrivateResults.aspx?&p_name=%D7%99%D7%A2%D7%A7%D7%91&p_city=%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91";
-  public async scrape(): Promise<void> {
+  public async scrape(): Promise<any> {
     const browser = await chromium.launch({
       headless: false,
       slowMo: 50,
@@ -66,7 +66,7 @@ export class NamesScraper {
       break;
     }
 
-    addresses.forEach((current_address, i) => {
+    const newUsers = addresses.map((current_address, i) => {
       const current_first_name = first_names[i];
       const current_last_name = last_names[i];
       const user = this.convertScrapedDataToUser(
@@ -74,8 +74,11 @@ export class NamesScraper {
         current_last_name,
         current_address
       );
+      return user;
       console.log(user);
     });
+
+    return newUsers;
   }
 
   private convertScrapedDataToUser(
