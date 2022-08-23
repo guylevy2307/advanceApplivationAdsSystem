@@ -14,7 +14,7 @@ import { getCurrentUser } from "./Utils/currentUser";
 
 function App() {
   const user = getCurrentUser();
-  console.log("User in App.js" + user);
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -25,8 +25,7 @@ function App() {
             path="/register"
             element={user ? <Navigate to="/" /> : <SignUp />}
           ></Route>
-          {/*<Route path="/logout" element={<Login />}>*/}
-          {/*</Route>*/}
+
           <Route path="/updateUser/:userEmail" element={<EditUser />}></Route>
           <Route path="/:postID/postDetails" element={<PostItem />}></Route>
           <Route path="/profile/:userEmail" element={<Profile />} />

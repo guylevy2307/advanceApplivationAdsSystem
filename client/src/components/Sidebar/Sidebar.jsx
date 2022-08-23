@@ -5,8 +5,6 @@ import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import { notification } from "antd";
 import { getCurrentUser } from "../../Utils/currentUser";
 import "./sidebar.css";
-import Online from "../Online/Online";
-
 
 const SidebarData = [
     {
@@ -17,7 +15,7 @@ const SidebarData = [
     },
 
     {
-        title: "Data",
+        title: "Admin Page",
         icon: <AdminPanelSettingsIcon />,
         link: "/admin",
         forAdmin: true
@@ -37,25 +35,25 @@ export default function Sidebar() {
     return (
         <div className="sidebar">
             <div className="sidebarWrapper">
-                <ul className="sidebarList">
+                <ul className="sidebarList" >
                     {SidebarData.map((val, key) => {
                         return (
                             <>
                                 <li className="sidebarListItem"
-                                    key={val.title + key}
+                                    key={val.title + " " + "1"}
                                     onClick={() => {
                                         if (val.forAdmin && user.isAdmin) {
                                             window.location.pathname = val.link
                                         }
                                         if (val.forAdmin && !user.isAdmin) {
-                                            openNotification('You cant go there');
+                                            openNotification('This is only for admin');
                                         }
                                         if (!val.forAdmin) {
                                             window.location.pathname = val.link;
                                         }
                                     }}>
-                                    <div className="sidebarIcon">{val.icon}</div>
-                                    <div className="sidebarListItemTitle">{val.title}</div>
+                                    <div className="sidebarIcon" key={val.title + " " + "2"}>{val.icon}</div>
+                                    <div className="sidebarListItemTitle" key={val.title + " " + "3"}>{val.title}</div>
                                 </li>
                             </>
                         )
