@@ -60,7 +60,7 @@ export default function Topbar(callback, deps) {
             link: "/",
             forAdmin: false
         },
-    
+
         {
             title: "Data",
             icon: <AdminPanelSettingsIcon />,
@@ -126,8 +126,18 @@ export default function Topbar(callback, deps) {
                     {updatedUsers.length > 0 && inputText && inputText.length > 0 && <SearchList input={inputText} userList={updatedUsers} isFirstName={isFirstName}
                         isLastName={isLastName} isEmail={isEmail} />}
                 </div>
+
+
+                <select className="listSearch" onChange={handleChange} >
+                    <option value="1">Search By:</option>
+                    <option value="1">Email</option>
+                    <option value="2">First Name</option>
+                    <option value="3">Last Name</option>
+                    <option value="4">Full Name</option>
+                    <option value="5">All</option>
+                </select>
                 <div class="topbarCenter">
-                {centerBarData.map((val, key) => {
+                    {centerBarData.map((val, key) => {
                         return (
                             <>
                                 <div className="dataListItem"
@@ -148,18 +158,8 @@ export default function Topbar(callback, deps) {
                                 </div>
                             </>
                         )
-                })}
+                    })}
                 </div>
-
-                <select className="listSearch" onChange={handleChange} >
-                    <option value="1">Search By:</option>
-                    <option value="1">Email</option>
-                    <option value="2">First Name</option>
-                    <option value="3">Last Name</option>
-                    <option value="4">Full Name</option>
-                    <option value="5">All</option>
-                </select>
-
             </div>
             <div className="topbarRight">
 
