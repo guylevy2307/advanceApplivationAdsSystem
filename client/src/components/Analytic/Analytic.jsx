@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PieChart from "../PieChart/PieChart";
-import { Box, Button, TextField } from "@mui/material";
 import { getDistributionTag, getPostAveragePerUser } from "../../services/PostService";
 import { getMostActive, getPopularFirstNames, getPopularLastNames } from "../../services/UserService";
 import BarChart from "../BarChart/BarChart";
+import Topbar from "../../components/Topbar/Topbar";
 
 export default function Analytic() {
 
     const [distributionBetweenPost, setDistributionBetweenPost] = useState(null)
-    const [avgPost,setAvgPost] = useState(null)
+    const [avgPost, setAvgPost] = useState(null)
     const tag1 = useRef()
     const tag2 = useRef()
     const tag3 = useRef()
@@ -17,15 +17,15 @@ export default function Analytic() {
             setDistributionBetweenPost(null)
             return
         }
-        if(tag1.current.value === tag2.current.value || tag2.current.value === tag3.current.value || tag1.current.value === tag3.current.value){
+        if (tag1.current.value === tag2.current.value || tag2.current.value === tag3.current.value || tag1.current.value === tag3.current.value) {
             setDistributionBetweenPost(null)
             return
         }
-        const res = await getDistributionTag(tag1.current.value,tag2.current.value,tag3.current.value)
+        const res = await getDistributionTag(tag1.current.value, tag2.current.value, tag3.current.value)
         let listData = []
-        for(let index in Object.keys(res)){
+        for (let index in Object.keys(res)) {
             const key = Object.keys(res)[index]
-            listData.push({item:key, count:res[key]})
+            listData.push({ item: key, count: res[key] })
         }
         console.log(listData)
         setDistributionBetweenPost(listData)
@@ -36,14 +36,14 @@ export default function Analytic() {
             setAvgPost(res)
         }
         initAvg()
-    },[])
+    }, [])
 
     const [firstNameDataPoints, setFirstNameDataPoints] = useState(null)
-    useEffect(()=>{
-        const initPopularFirstName = async () =>{
+    useEffect(() => {
+        const initPopularFirstName = async () => {
             const res = await getPopularFirstNames()
 
-            if(res){
+            if (res) {
                 const dataPoints = [
                     {
                         label: res.firstPlace,
@@ -59,19 +59,19 @@ export default function Analytic() {
                     }
                 ]
                 setFirstNameDataPoints(dataPoints)
-            }else{
+            } else {
                 setFirstNameDataPoints(null)
             }
         }
         initPopularFirstName()
-    },[])
+    }, [])
 
     const [lastNameDataPoints, setLastNameDataPoints] = useState(null)
-    useEffect(()=>{
-        const initPopularLastName = async () =>{
+    useEffect(() => {
+        const initPopularLastName = async () => {
             const res = await getPopularLastNames()
 
-            if(res){
+            if (res) {
                 const dataPoints = [
                     {
                         label: res.firstPlace,
@@ -87,20 +87,20 @@ export default function Analytic() {
                     }
                 ]
                 setLastNameDataPoints(dataPoints)
-            }else{
+            } else {
                 setLastNameDataPoints(null)
             }
         }
         initPopularLastName()
-    },[])
+    }, [])
 
-    const [mostActive,setMostActive] = useState(null)
-    useEffect(()=>{
-        const initMostActive = async () =>{
+    const [mostActive, setMostActive] = useState(null)
+    useEffect(() => {
+        const initMostActive = async () => {
             const res = await getMostActive()
             let dataPoints = []
-            if(res){
-                for(let i=0; i < res.length;i++){
+            if (res) {
+                for (let i = 0; i < res.length; i++) {
                     const user = res[i]
                     dataPoints.push({
                         label: `${user.fullName} - ${user.email}`,
@@ -108,54 +108,37 @@ export default function Analytic() {
                     })
                 }
                 setMostActive(dataPoints)
-            }else{
+            } else {
                 setMostActive(null)
             }
         }
         initMostActive()
-    },[])
+    }, [])
 
     const dataPoints = [
-        { label: "Apple",  y: 10  },
-        { label: "Orange", y: 15  },
-        { label: "Banana", y: 25  },
-        { label: "Mango",  y: 30  },
-        { label: "Grape",  y: 28  }
+        { label: "Apple", y: 10 },
+        { label: "Orange", y: 15 },
+        { label: "Banana", y: 25 },
+        { label: "Mango", y: 30 },
+        { label: "Grape", y: 28 }
     ]
     return (
         <div className="container">
-            <h2>Distribution Between Words in Posts</h2>
-            <h3>enter tags to compare between the tags frequency...</h3>
-            <div className="tags-container">
-                <Box display="flex">
-                    <Box m={0.0001} flex={1}>
-                        <TextField placeholder="tag #1" inputRef={tag1}/>
-                    </Box>
-                    <Box m={0.0001} flex={1}>
-                        <TextField placeholder="tag #2" inputRef={tag2}/>
-                    </Box>
-                    <Box m={0.0001} flex={1}>
-                        <TextField placeholder="tag #3" inputRef={tag3}/>
-                    </Box>
-                    <Box m={0.0001} flex={1}>
-                        <Button onClick={()=>{initalizeTagsDist()}} variant="contained">
-                            submit
-                        </Button>
-                    </Box>
-                </Box>
-            </div>
-            {distributionBetweenPost && <PieChart data={distributionBetweenPost}/>}
+            <Topbar />
+            <h2>Distribution Between First And Last Nmae Of Users</h2>
 
-            <br/>
+            {distributionBetweenPost && <PieChart data={distributionBetweenPost} />}
+
+            <br />
             {avgPost && <ul>
                 <li><h2>{avgPost}</h2></li>
             </ul>}
-            <br/>
-            {firstNameDataPoints && <BarChart dataPoints={firstNameDataPoints} title={"most popular users first names"}/>}
-            <br/>
-            {lastNameDataPoints && <BarChart dataPoints={lastNameDataPoints} title={"most popular users last names"}/>}
-            <br/>
-            {mostActive && <BarChart dataPoints={mostActive} title={"most active users"}/>}
+            <br />
+            {firstNameDataPoints && <BarChart dataPoints={firstNameDataPoints} title={"most popular users first names"} />}
+            <br />
+            {lastNameDataPoints && <BarChart dataPoints={lastNameDataPoints} title={"most popular users last names"} />}
+            <br />
+            {mostActive && <BarChart dataPoints={mostActive} title={"most active users"} />}
         </div>
     )
 }
