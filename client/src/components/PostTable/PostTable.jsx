@@ -16,6 +16,7 @@ export default function PostTable() {
             setFlagToLoadAgian(1 - flagToLoadAgain) //switch each time this method is called
         }
         else
+            console.log(`failed to delete  post ${id}`)
 
     }
 
