@@ -6,8 +6,8 @@ import { useRef, useState } from "react";
 import { getCurrentUser } from "../../Utils/currentUser";
 import "./share.css";
 
-const { SERVER_URL } = require("../../services/HttpServiceHelper");
-const POST_SERVICE = SERVER_URL + '/posts';
+const { API_URL } = require("../../services/Api");
+const POST_SERVICE = API_URL + '/posts';
 
 const blobToBase64 = require('blob-to-base64')
 

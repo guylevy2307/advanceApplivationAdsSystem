@@ -5,14 +5,14 @@ import { useParams } from "react-router";
 import Feed from "../../components/Feed/Feed";
 import Rightbar from "../../components/Rightbar/Rightbar";
 import Topbar from "../../components/Topbar/Topbar";
-import { SERVER_URL } from "../../services/HttpServiceHelper";
+import { API_URL } from "../../services/Api";
 import useMounted from "../../useMounted";
 import { getCurrentUser } from "../../Utils/currentUser";
 import "./profile.css";
 
 
 
-const USER_SERVICE = SERVER_URL + "/users"
+const USER_SERVICE = API_URL + "/users"
 
 export default function Profile() {
     const [user, setUser] = useState({});

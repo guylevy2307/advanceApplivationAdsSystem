@@ -2,7 +2,6 @@ const User = require("./User");
 const Post = require("../posts/Post");
 const NodeGeocoder = require("node-geocoder");
 const createCountMinSketch = require("count-min-sketch");
-const geocoder = NodeGeocoder(options);
 
 const readUsers = async (req, res) => {
   let sent = false;
@@ -230,6 +229,7 @@ const searchLatAndLngByAddress = async (address) => {
     apiKey: "AIzaSyDgRiuBRnyBk0p69oZpOwQQFzm8dLYuBKw", // for Mapquest, OpenCage, Google Premier
     formatter: null, // 'gpx', 'string', ...
   };
+  const geocoder = NodeGeocoder(options);
 
   // Using callback
   try {

@@ -7,7 +7,7 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import useMounted from "../../useMounted";
-import { SERVER_URL } from "../../services/HttpServiceHelper";
+import { API_URL } from "../../services/Api";
 
 const Editor = ({ onChange, onSubmit, submitting, value }) => (
     <>
@@ -52,9 +52,9 @@ const PostDetails = (props) => {
         }, 1000);
         console.log(post);
         console.log(value);
-        const responseCreate = await axios.post(SERVER_URL + `/comments/`,{postID: post._id, content: value });
+        const responseCreate = await axios.post(API_URL + `/comments/`,{postID: post._id, content: value });
 
-        const response = await axios.get(SERVER_URL + `/comments/post/${post._id}`);
+        const response = await axios.get(API_URL + `/comments/post/${post._id}`);
         if (response.status === 200) {
             openNotification('Added comment successfully!');
             setComments(response.data)
@@ -67,7 +67,7 @@ const PostDetails = (props) => {
     };
     useEffect(() => {
         const fetchComments = async () => {
-            const response = await axios.get(SERVER_URL + `/comments/post/${postID}`);
+            const response = await axios.get(API_URL + `/comments/post/${postID}`);
             const { data } = response;
             if (isMounted)
                 setComments(data);

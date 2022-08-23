@@ -1,7 +1,7 @@
 const axios = require("axios");
-const { SERVER_URL } = require("./HttpServiceHelper");
+const { API_URL } = require("./Api");
 
-const POST_SERVICE = SERVER_URL + "/posts";
+const POST_SERVICE = API_URL + "/posts";
 
 export const getAllPosts = async () => {
   const res = await axios.get(POST_SERVICE);

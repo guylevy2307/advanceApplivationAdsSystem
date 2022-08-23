@@ -5,7 +5,7 @@ import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router";
 import useMounted from "../../useMounted";
-import { SERVER_URL } from "../../services/HttpServiceHelper";
+import { API_URL } from "../../services/Api";
 import { getCurrentUser } from "../../Utils/currentUser";
 
 const blobToBase64 = require('blob-to-base64')
@@ -25,7 +25,7 @@ export default function UpdateUser() {
 
     useEffect( () => {
         const fetchUser = async() => {
-            const response = await axios.get(SERVER_URL + `/users/${email}`);
+            const response = await axios.get(API_URL + `/users/${email}`);
             const { data } = response;
             setUser(data);
         }
@@ -49,7 +49,7 @@ export default function UpdateUser() {
         //                 debugger
         //                 console.log(updatedUser)
         //                 updatedUser.profilePicture = base64;
-        //                 const response = await axios.patch(SERVER_URL + `/users/${endUser.email}`, updatedUser);
+        //                 const response = await axios.patch(API_URL + `/users/${endUser.email}`, updatedUser);
         //                 if(response.status === 200){
         //                     openNotification('User updated successfully!');
         //                 }
@@ -81,7 +81,7 @@ export default function UpdateUser() {
                     try {
                         console.log(updatedUser)
                         updatedUser.profilePicture = base64;
-                        const response = await axios.patch(SERVER_URL + `/users/${endUser.email}`, updatedUser);
+                        const response = await axios.patch(API_URL + `/users/${endUser.email}`, updatedUser);
                         console.log("Updated user: " + response.data);
                         if(response.status === 200){
                             if(response.data.email === getCurrentUser().email)

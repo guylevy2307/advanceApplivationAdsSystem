@@ -1,21 +1,17 @@
-import { Person } from "@mui/icons-material";
-import { Button, FormControlLabel, TextField } from "@mui/material";
-import { Checkbox } from "antd";
-import 'antd/dist/antd.min.css'
+import { Person, RssFeed } from "@mui/icons-material";
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import { Button, TextField } from "@mui/material";
+import { notification } from "antd";
+import 'antd/dist/antd.min.css';
 import axios from "axios";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import useMounted from '../../useMounted';
 import logoImage from '../../public/adsystem.png';
-import { SERVER_URL } from "../../services/HttpServiceHelper";
+import { API_URL } from "../../services/Api";
+import useMounted from '../../useMounted';
 import { getCurrentUser } from "../../Utils/currentUser";
 import SearchList from "./SearchList";
 import "./topbar.css";
-import { notification } from "antd";
-import {
-    Chat, RssFeed
-} from "@mui/icons-material";
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 export default function Topbar(callback, deps) {
     const isUserNameExists = localStorage.getItem("username");
@@ -45,7 +41,7 @@ export default function Topbar(callback, deps) {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const response = await axios.get(SERVER_URL + `/users/`);
+            const response = await axios.get(API_URL + `/users/`);
             const { data } = response;
             if (isMounted) setUsers(data);
         };

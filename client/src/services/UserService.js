@@ -1,7 +1,7 @@
 const axios = require("axios");
-const { SERVER_URL } = require("./Api");
+const { API_URL } = require("./Api");
 
-const USER_SERVICE = SERVER_URL + "/users";
+const USER_SERVICE = API_URL + "/users";
 
 export const signUp = (user) => {
   console.log("service call");

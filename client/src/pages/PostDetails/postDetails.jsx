@@ -5,7 +5,7 @@ import { useParams } from "react-router";
 import PostDetails from "../../components/PostDetails/PostDetails";
 import Rightbar from "../../components/Rightbar/Rightbar";
 import Topbar from "../../components/Topbar/Topbar";
-import { SERVER_URL } from "../../services/HttpServiceHelper";
+import { API_URL } from "../../services/Api";
 import useMounted from "../../useMounted";
 
 const PostItem = () => {
@@ -17,7 +17,7 @@ const PostItem = () => {
     try {
         useEffect(() => {
             const fetchPost = async () => {
-                const response = await axios.get(SERVER_URL + `/posts/${postID}`)
+                const response = await axios.get(API_URL + `/posts/${postID}`)
                 const {data} = response;
                 if (isMounted)
                     setPost(data);
@@ -32,7 +32,7 @@ const PostItem = () => {
     try {
         useEffect(() => {
             const fetchUser = async () => {
-                const response = await axios.get(SERVER_URL + `/users/${post.userEmail}`)
+                const response = await axios.get(API_URL + `/users/${post.userEmail}`)
                 const {data} = response;
                 if (isMounted)
                     setUser(data);

@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import moment from 'moment'
 import "./post.css";
 
-const { SERVER_URL } = require("../../services/HttpServiceHelper");
+const { API_URL } = require("../../services/Api");
 
 
 export default function Post({ post }) {
@@ -13,7 +13,7 @@ export default function Post({ post }) {
     const navigate = useNavigate()
     const [user, setUser] = useState([]);
     const fetchUser = async () => {
-        const response = await axios.get(SERVER_URL + `/users/${post.userEmail}`);
+        const response = await axios.get(API_URL + `/users/${post.userEmail}`);
         const { data } = response;
         setUser(data);
     };
