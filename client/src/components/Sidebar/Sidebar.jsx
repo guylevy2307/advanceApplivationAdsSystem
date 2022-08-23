@@ -5,6 +5,7 @@ import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import { notification } from "antd";
 import { getCurrentUser } from "../../Utils/currentUser";
 import "./sidebar.css";
+import Online from "../Online/Online";
 
 
 const SidebarData = [
@@ -19,7 +20,7 @@ const SidebarData = [
         title: "Data",
         icon: <AdminPanelSettingsIcon />,
         link: "/admin",
-        forAdmin: true
+        forAdmin: false
     }
 ]
 
@@ -62,6 +63,6 @@ export default function Sidebar() {
                 </ul>
                 <hr className="sidebarHr" />
             </div>
-        </div>
+        </div >
     )
 }

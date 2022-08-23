@@ -5,6 +5,7 @@ import { getMostActive, getPopularFirstNames, getPopularLastNames } from "../../
 import BarChart from "../BarChart/BarChart";
 import Topbar from "../../components/Topbar/Topbar";
 
+
 export default function Analytic() {
 
     const [distributionBetweenPost, setDistributionBetweenPost] = useState(null)
@@ -27,7 +28,6 @@ export default function Analytic() {
             const key = Object.keys(res)[index]
             listData.push({ item: key, count: res[key] })
         }
-        console.log(listData)
         setDistributionBetweenPost(listData)
     }
     useEffect(() => {
@@ -123,22 +123,30 @@ export default function Analytic() {
         { label: "Grape", y: 28 }
     ]
     return (
-        <div className="container">
-            <Topbar />
-            <h2>Distribution Between First And Last Nmae Of Users</h2>
+        <div>
+            <div className="container">
+                <Topbar />
 
-            {distributionBetweenPost && <PieChart data={distributionBetweenPost} />}
 
-            <br />
-            {avgPost && <ul>
-                <li><h2>{avgPost}</h2></li>
-            </ul>}
-            <br />
-            {firstNameDataPoints && <BarChart dataPoints={firstNameDataPoints} title={"most popular users first names"} />}
-            <br />
-            {lastNameDataPoints && <BarChart dataPoints={lastNameDataPoints} title={"most popular users last names"} />}
-            <br />
-            {mostActive && <BarChart dataPoints={mostActive} title={"most active users"} />}
+                {distributionBetweenPost && <PieChart data={distributionBetweenPost} />}
+
+                <br />
+
+                {avgPost &&
+                    <h2>{avgPost}</h2>
+                }
+                <h2>Distribution Between First And Last Nmae Of Users</h2>
+                <br />
+                {firstNameDataPoints && <BarChart dataPoints={firstNameDataPoints} title={"most popular users first names"} />}
+                <br />
+                {lastNameDataPoints && <BarChart dataPoints={lastNameDataPoints} title={"most popular users last names"} />}
+                <br />
+                {mostActive && <BarChart dataPoints={mostActive} title={"most active users"} />}
+
+            </div>
+
+
+
         </div>
     )
 }
