@@ -1,6 +1,4 @@
-import {
-    Chat, RssFeed
-} from "@mui/icons-material";
+import { RssFeed } from "@mui/icons-material";
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import { notification } from "antd";
 import { getCurrentUser } from "../../Utils/currentUser";

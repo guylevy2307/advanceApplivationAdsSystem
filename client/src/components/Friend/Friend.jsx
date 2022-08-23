@@ -1,7 +1,7 @@
-import "./closeFriend.css";
+import "./friend.css";
 import { Link } from "react-router-dom";
 
-export default function CloseFriend({user}) {
+export default function Friend({user}) {
     console.log(user)
     return (
         <li className="sidebarFriend">

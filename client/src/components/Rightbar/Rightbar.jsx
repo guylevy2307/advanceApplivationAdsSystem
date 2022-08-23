@@ -2,7 +2,7 @@ import { Avatar } from "antd";
 import React, { useEffect, useMemo, useState } from "react";
 import useMounted from "../../useMounted";
 import { getUserFriends } from "../../services/UserService";
-import CloseFriend from "../CloseFriend/CloseFriend";
+import Friend from "../Friend/Friend";
 import "./rightbar.css";
 
 const Rightbar = (props) => {
@@ -55,7 +55,7 @@ const Rightbar = (props) => {
                     <h4 className="rightbarTitle">User Connections: ({friends.length})</h4>
                     <ul className="rightbarFriendList">
                         {friends.map((u) => (
-                            <CloseFriend key={u._id} user={u} />
+                            <Friend key={u._id} user={u} />
                         ))}
                     </ul>
                 </>
