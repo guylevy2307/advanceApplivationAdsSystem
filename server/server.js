@@ -5,8 +5,6 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const UserRouter = require("./users/userRoutes");
 const PostRouter = require("./posts/post.routes");
-const { conversationRouter } = require("./routes/conversation.routes");
-const { messageRouter } = require("./routes/message.routes");
 const CommentRouter = require("./comments/comment.routes");
 
 dotenv.config();
@@ -28,8 +26,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/users", UserRouter);
 app.use("/posts", PostRouter);
 app.use("/comments", CommentRouter);
-app.use("/conversation", conversationRouter);
-app.use("/message", messageRouter);
 
 app.get("/", (req, res) => {
   res.send("Im alive");

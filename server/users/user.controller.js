@@ -1,9 +1,8 @@
-const mongoose = require("mongoose");
 const User = require("./User");
 const Post = require("../posts/Post");
 const NodeGeocoder = require("node-geocoder");
-const Conversation = require("../Models/Conversation");
 const createCountMinSketch = require("count-min-sketch");
+const geocoder = NodeGeocoder(options);
 
 const readUsers = async (req, res) => {
   let sent = false;
@@ -231,7 +230,6 @@ const searchLatAndLngByAddress = async (address) => {
     apiKey: "AIzaSyDgRiuBRnyBk0p69oZpOwQQFzm8dLYuBKw", // for Mapquest, OpenCage, Google Premier
     formatter: null, // 'gpx', 'string', ...
   };
-  const geocoder = NodeGeocoder(options);
 
   // Using callback
   try {
@@ -423,10 +421,6 @@ const addUserFriend = async (req, res) => {
       { friends: friends }
     ).clone();
 
-    const conversation = new Conversation({
-      members: [email, newFriend],
-    });
-    await conversation.save();
     if (!sent) {
       res.status(200).json(response);
       sent = true;

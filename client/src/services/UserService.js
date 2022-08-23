@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { SERVER_URL } = require("./HttpServiceHelper");
+const { SERVER_URL } = require("./Api");
 
 const USER_SERVICE = SERVER_URL + "/users";
 

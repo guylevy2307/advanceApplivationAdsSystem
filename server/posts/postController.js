@@ -5,7 +5,7 @@ const {
   AddPostToUser,
   deletePostFromUser,
   getAllUserAddresses,
-} = require("../users/userController");
+} = require("../users/user.controller");
 
 const readPosts = async (req, res) => {
   try {

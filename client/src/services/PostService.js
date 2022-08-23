@@ -9,7 +9,6 @@ export const getAllPosts = async () => {
 };
 
 export const getDistributionTag = async (firstTag, secondTag, thirdTag) => {
-  console.log("ADSASD");
   const res = await axios.post(`${POST_SERVICE}/utils/tags`, {
     tag1: firstTag,
     tag2: secondTag,
