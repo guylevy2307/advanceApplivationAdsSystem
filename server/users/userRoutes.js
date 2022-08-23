@@ -20,8 +20,7 @@ usersRouter.get("/:email/friends", userController.getFriendsByUser);
 usersRouter.get("/popular/firstNames", userController.getPopularFirstNames);
 usersRouter.get("/popular/lastNames", userController.getPopularLastNames);
 
-usersRouter.get("/mostactive", userController.getMostActiveUsers);
-usersRouter.get("/addresses", userController.getAllUserAddresses);
-usersRouter.get("/mostactive", userController.getMostActiveUsers);
+usersRouter.get("/analytics/mostactive", userController.getMostActiveUsers);
+usersRouter.get("/analytics/addresses", userController.getAllUserAddresses);
 
 module.exports = usersRouter;

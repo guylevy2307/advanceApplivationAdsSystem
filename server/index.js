@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const UserRouter = require("./users/user.routes");
+const UserRouter = require("./users/userRoutes");
 const PostRouter = require("./posts/post.routes");
 const { conversationRouter } = require("./routes/conversation.routes");
 const { messageRouter } = require("./routes/message.routes");
@@ -24,7 +24,7 @@ app.use(cors(corsOptions));
 
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
-// app.use(cors());
+
 app.use("/users", UserRouter);
 app.use("/posts", PostRouter);
 app.use("/comments", CommentRouter);

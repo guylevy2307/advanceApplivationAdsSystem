@@ -30,7 +30,7 @@ export const getAllUsers = async () => {
 };
 
 export const getAllAddresses = async () => {
-  const res = await axios.get(`${USER_SERVICE}/addresses`);
+  const res = await axios.get(`${USER_SERVICE}/analytics/addresses`);
   return res.data;
 };
 
@@ -55,6 +55,6 @@ export const getPopularLastNames = async () => {
 };
 
 export const getMostActive = async () => {
-  const response = await axios.get(USER_SERVICE + "/mostactive");
+  const response = await axios.get(USER_SERVICE + "/analytics/mostactive");
   return response.status === 200 ? response.data : null;
 };
