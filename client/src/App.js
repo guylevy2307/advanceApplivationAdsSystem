@@ -4,7 +4,7 @@ import "./App.css";
 import { Navigate } from "react-router-dom";
 import Login from "./components/Login/Login";
 import { SignUp } from "./components/SignUp/SignUp";
-import Analytic from "./components/Analytic/Analytic";
+import Admin from "./pages/admin/Admin";
 import EditUser from "./pages/EditUser/EditUser";
 import Home from "./pages/Home/Home";
 import Messenger from "./pages/Messenger/Messenger";
@@ -30,7 +30,7 @@ function App() {
           <Route path="/updateUser/:userEmail" element={<EditUser />}></Route>
           <Route path="/:postID/postDetails" element={<PostItem />}></Route>
           <Route path="/profile/:userEmail" element={<Profile />} />
-          <Route path="/admin" element={<Analytic />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -125,8 +125,6 @@ export default function Analytic() {
     return (
         <div>
             <div className="container">
-                <Topbar />
-
 
                 {distributionBetweenPost && <PieChart data={distributionBetweenPost} />}
 
