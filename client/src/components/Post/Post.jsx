@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import moment from 'moment'
 import "./post.css";
 
-const { SERVER_URL } = require("../../services/HttpServiceHelper");
+const {SERVER_URL} = require("../../services/HttpServiceHelper");
 
 
 export default function Post({ post }) {
@@ -17,10 +17,10 @@ export default function Post({ post }) {
         const { data } = response;
         setUser(data);
     };
-    useEffect(() => {
+    useEffect( () => {
         fetchUser();
     }, [post.userEmail]);
-    console.lo(post.images)
+    console.log(post.images)
 
     return (
         <div className="post" onClick={(e) => navigate(`/${post._id}/postDetails`)}>
@@ -45,7 +45,7 @@ export default function Post({ post }) {
                 </div>
                 <div className="postCenter">
                     <span className="postText">{post.content}</span>
-                    <img className="postImg" src={post.image} alt="" />
+                        <img className="postImg" src={post.image} alt="" />
                 </div>
             </div>
         </div>

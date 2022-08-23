@@ -17,20 +17,20 @@ const USER_SERVICE = SERVER_URL + "/users"
 
 export default function Profile() {
     const [user, setUser] = useState({});
-    const isMounted = useMounted();
+    const isMounted  = useMounted();
     const userEmail = useParams().userEmail;
     console.log(userEmail);
 
 
-    useEffect(() => {
+    useEffect( () => {
         const fetchUser = async () => {
-            const response = await axios.get(USER_SERVICE + `/${userEmail}`)
+            const response = await axios.get( USER_SERVICE + `/${userEmail}`)
             const { data } = response;
             console.log(data)
             if (isMounted) setUser(data);
         };
         isMounted && fetchUser()
-    }, [userEmail, isMounted]);
+    },[userEmail, isMounted]);
 
     const newUser = useMemo(() => user || {}, [user]);
     console.log(newUser.email)
@@ -43,10 +43,10 @@ export default function Profile() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await axios.post(USER_SERVICE + `/${getCurrentUser().email}/addFriend`, { friendEmail: newUser.email })
-        if (response.status === 200) {
+        const response = await axios.post( USER_SERVICE + `/${getCurrentUser().email}/addFriend`,{friendEmail: newUser.email})
+        if(response.status === 200) {
             console.log("User after friend: " + response.data)
-            if (response.data.email === getCurrentUser().email)
+            if(response.data.email === getCurrentUser().email)
                 localStorage.setItem("user", JSON.stringify(response.data));
             openNotification("Added User to your friends list successfully")
         }
@@ -73,12 +73,12 @@ export default function Profile() {
                         </div>
                         <div className="profileInfo">
                             <h4 className="profileInfoName">{newUser.userEmail}</h4>
-                            {getCurrentUser().email !== newUser.email && <Button onClick={handleSubmit}>Add Connection!</Button>}
+                            {getCurrentUser().email !== newUser.email && <Button onClick={handleSubmit}>Add Friend</Button>}
                         </div>
                     </div>
                     <div className="profileRightBottom">
                         {newUser.email === getCurrentUser().email &&
-                            <Feed userEmail={userEmail} />}
+                            <Feed userEmail={userEmail}/>}
                         {newUser && newUser.email && <Rightbar profile={newUser} />}
                     </div>
                 </div>

@@ -76,6 +76,7 @@ export default function Topbar(callback, deps) {
             isLastName = true;
             isEmail = true;
         }
+        console.log(isFirstName + " " + isLastName + " " + isEmail)
     }
 
     return (

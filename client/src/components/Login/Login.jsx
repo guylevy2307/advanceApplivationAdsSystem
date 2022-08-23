@@ -22,6 +22,7 @@ export default function FormDialog() {
     const validateError = () => {
         const email = emailRef.current.value
         const password = passwordRef.current.value
+        console.log({ email, password });
         const currentErrors = errors
         setValidEmail(validator.isEmail(email))
         if (!validEmail)

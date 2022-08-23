@@ -25,25 +25,25 @@ export default function Messenger() {
     const scrollRef = useRef()
     const newMessageContent = useRef()
 
-    const [onlineUserList, setOnlineUserList] = useState([])
-    useEffect(() => {
-        const initializeFriendUserList = async () => {
+    const [onlineUserList,setOnlineUserList] = useState([])
+    useEffect(()=>{
+        const initializeFriendUserList = async () =>{
             let friendList = []
-            try {
+            try{
                 friendList = await getUserFriends(currentUserEmail)
-            } catch (err) {
+            }catch(err){
                 console.log(err)
-            } finally {
+            }finally {
                 setFriendList(friendList)
                 friendListBackup = friendList
             }
         }
         initializeFriendUserList()
-    }, [currentUserEmail])
+    },[currentUserEmail])
 
     const updateMessagesIfNecessary = (newMessage) => {
         console.log(newMessage)
-        if (newMessage && newMessage?.sender === selectedFriendEmail) {
+        if(newMessage && newMessage?.sender === selectedFriendEmail){
             console.log(currentMessages)
             setCurrentMessages([...currentMessagesBackup, newMessage])
             console.log(currentMessages)
@@ -70,35 +70,35 @@ export default function Messenger() {
             console.log(onlineFriends)
             setOnlineUserList(onlineFriends)
         })
-        socket.current.emit("addUser", currentUserEmail)
+        socket.current.emit("addUser",currentUserEmail)
         socket.current.emit("getOnline", currentUserEmail)
-    }, [])
-
+    },[])
+    
     //fetch message list
-    useEffect(() => {
+    useEffect(()=>{
         const initalizeMessageList = async () => {
             const res = await fetchConversationMessages(currentConversationId)
             setCurrentMessages(res)
             currentMessagesBackup = res
         }
         initalizeMessageList()
-    }, [currentConversationId])
+    },[currentConversationId])
 
-    useEffect(() => {
-        scrollRef.current?.scrollIntoView({ behavior: 'smooth' })
-    }, [currentMessages])
+    useEffect(()=>{
+        scrollRef.current?.scrollIntoView({behavior:'smooth'})
+    },[currentMessages])
 
 
     return (
         <>
-            <Topbar />
+            <Topbar/>
             <div className="messenger">
                 <div className="chatMenu">
                     <div className="chatMenuWrapper">
-                        <input placeholder="Search for friends" className="chatMenuInput" />
-                        {friendList.map(user => {
+                        <input placeholder="Search for friends" className="chatMenuInput"/>
+                        { friendList.map(user=>{
                             return (
-                                <div key={user._id} onClick={() => {
+                                <div key={user._id} onClick={()=> {
                                     selectedFriendEmail = user.email
                                     const initializeConversation = async () => {
                                         const conversation = await getSpecificConversation(currentUserEmail, user.email)
@@ -108,22 +108,22 @@ export default function Messenger() {
                                     }
                                     initializeConversation()
                                 }}>
-                                    <Conversation user={user} />
+                                    <Conversation user={user}/>
                                 </div>
                             )
-                        })}
+                        }) }
                     </div>
                 </div>
                 <div className="chatBox">
                     <div className="chatBoxWrapper">
                         {
-                            currentConversationId != null ?
+                            currentConversationId!=null ?
                                 <>
                                     <div className="chatBoxTop">
                                         {currentMessages.map(message => {
                                             return (
                                                 <div key={message._id} ref={scrollRef}>
-                                                    <Message own={message.sender === currentUserEmail} userEmail={message.sender === currentUserEmail ? currentUserEmail : selectedFriendEmail} messageInfo={message} />
+                                                    <Message own={message.sender===currentUserEmail} userEmail={message.sender===currentUserEmail ? currentUserEmail : selectedFriendEmail} messageInfo={message}/>
                                                 </div>
                                             )
                                         })}
@@ -133,27 +133,27 @@ export default function Messenger() {
                                         <textarea ref={newMessageContent} className="chatMessageInput" placeholder="write something ..."></textarea>
                                         {/*todo: check disable*/}
                                         <button
-                                            className="chatSubmitButton"
-                                            onClick={(e) => {
-                                                console.log(currentConversationId)
-                                                console.log(selectedFriendEmail)
-                                                const text = newMessageContent.current.value
-                                                if (text && text !== "") {
-                                                    const sendAndGetNewMessage = async () => {
-                                                        const savedMessage = await sendMessage(currentUserEmail, currentConversationId, text)
-                                                        setCurrentMessages([...currentMessages, savedMessage])
+                                                className="chatSubmitButton"
+                                                onClick={(e)=>{
+                                                    console.log(currentConversationId)
+                                                    console.log(selectedFriendEmail)
+                                                        const text = newMessageContent.current.value
+                                                        if(text && text!== ""){
+                                                            const sendAndGetNewMessage = async ()=>{
+                                                                const savedMessage = await sendMessage(currentUserEmail,currentConversationId,text)
+                                                                setCurrentMessages([...currentMessages,savedMessage])
+                                                            }
+                                                            sendAndGetNewMessage()
+                                                            console.log(socket.current.id)
+                                                            socket.current.emit("sendMessage",JSON.stringify({
+                                                                senderEmail: currentUserEmail,
+                                                                receiverEmail: selectedFriendEmail,
+                                                                text
+                                                            }))
+                                                        }else
+                                                            console.log('message is empty')
                                                     }
-                                                    sendAndGetNewMessage()
-                                                    console.log(socket.current.id)
-                                                    socket.current.emit("sendMessage", JSON.stringify({
-                                                        senderEmail: currentUserEmail,
-                                                        receiverEmail: selectedFriendEmail,
-                                                        text
-                                                    }))
-                                                } else
-                                                    console.log('message is empty')
-                                            }
-                                            }
+                                                }
                                         >
                                             Send
                                         </button>
@@ -166,7 +166,7 @@ export default function Messenger() {
                 </div>
                 <div className="chatOnline">
                     <div className="chatOnlineWrapper">
-                        {onlineUserList.map(user => <ChatOnline key={user._id.toString()} user={user} />)}
+                        { onlineUserList.map(user=><ChatOnline key={user._id.toString()} user={user}/>) }
                     </div>
                 </div>
             </div>
