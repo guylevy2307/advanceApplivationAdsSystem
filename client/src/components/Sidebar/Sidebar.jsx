@@ -9,19 +9,14 @@ import "./sidebar.css";
 
 const SidebarData = [
     {
-        title: "Feed",
+        title: "Ads",
         icon: <RssFeed />,
         link: "/",
         forAdmin: false
     },
+
     {
-        title: "Chat",
-        icon: <Chat />,
-        link: "/messenger",
-        forAdmin: false
-    },
-    {
-        title: "Admin",
+        title: "Data",
         icon: <AdminPanelSettingsIcon />,
         link: "/admin",
         forAdmin: true
@@ -42,19 +37,19 @@ export default function Sidebar() {
         <div className="sidebar">
             <div className="sidebarWrapper">
                 <ul className="sidebarList">
-                    {SidebarData.map((val,key)=>{
+                    {SidebarData.map((val, key) => {
                         return (
                             <>
                                 <li className="sidebarListItem"
                                     key={val.title + key}
                                     onClick={() => {
-                                        if(val.forAdmin && user.isAdmin) {
+                                        if (val.forAdmin && user.isAdmin) {
                                             window.location.pathname = val.link
                                         }
-                                        if(val.forAdmin && !user.isAdmin) {
+                                        if (val.forAdmin && !user.isAdmin) {
                                             openNotification('You cant go there');
                                         }
-                                        if(!val.forAdmin) {
+                                        if (!val.forAdmin) {
                                             window.location.pathname = val.link;
                                         }
                                     }}>

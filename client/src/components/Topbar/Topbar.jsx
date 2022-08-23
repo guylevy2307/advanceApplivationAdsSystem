@@ -77,23 +77,7 @@ export default function Topbar(callback, deps) {
                 </div>
             </div>
             <div className="topbarRight">
-                <div className="topbarLinks">
-                    <span className="topbarLink">
-                        <FormControlLabel control={<Checkbox defaultChecked />} label="First Name" onClick={(event) => {
-                            setIsFirstName(event.target.value)
-                        }} />
-                    </span>
-                    <span className="topbarLink">
-                        <FormControlLabel control={<Checkbox defaultChecked />} label="Last Name" onClick={(event) => {
-                            setIsLastName(event.target.value)
-                        }} />
-                    </span>
-                    <span className="topbarLink">
-                        <FormControlLabel control={<Checkbox defaultChecked />} label="Email" onClick={(event) => {
-                            setIsEmail(event.target.value)
-                        }} />
-                    </span>
-                </div>
+
                 <div className="topbarImage">
                     <Link to={`/updateUser/${getCurrentUser().email}`} style={{ textDecoration: "none" }}>
                         <Person />

@@ -4,5 +4,5 @@ use the comment
 this should take 5 min 
 
 # Already installed the moudels?
-### `npm index`
+### `node index`
 
