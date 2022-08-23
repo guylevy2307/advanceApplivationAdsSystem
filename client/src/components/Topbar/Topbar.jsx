@@ -11,7 +11,11 @@ import { SERVER_URL } from "../../services/HttpServiceHelper";
 import { getCurrentUser } from "../../Utils/currentUser";
 import SearchList from "./SearchList";
 import "./topbar.css";
-
+import { notification } from "antd";
+import {
+    Chat, RssFeed
+} from "@mui/icons-material";
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 export default function Topbar(callback, deps) {
     const isUserNameExists = localStorage.getItem("username");
@@ -19,9 +23,10 @@ export default function Topbar(callback, deps) {
     const nav = useNavigate();
     const [inputText, setInputText] = useState("");
     const [users, setUsers] = useState([]);
-    var [isFirstName, setIsFirstName] = useState(true);
-    var [isLastName, setIsLastName] = useState(true);
-    var [isEmail, setIsEmail] = useState(true);
+    const [isFirstName, setIsFirstName] = useState(true);
+    const [isLastName, setIsLastName] = useState(true);
+    const [isEmail, setIsEmail] = useState(true);
+    const user = getCurrentUser();
 
     const isMounted = useMounted();
 
@@ -47,8 +52,27 @@ export default function Topbar(callback, deps) {
         isMounted && fetchUsers();
     }, [isMounted]);
 
-
     const updatedUsers = useMemo(() => users || [], [users])
+    const centerBarData = [
+        {
+            title: "Ads",
+            icon: <RssFeed />,
+            link: "/",
+            forAdmin: false
+        },
+    
+        {
+            title: "Data",
+            icon: <AdminPanelSettingsIcon />,
+            link: "/admin",
+            forAdmin: true
+        }
+    ]
+    const openNotification = (content) => {
+        notification.open({
+            message: content,
+        });
+    };
 
     const [option, setOption] = useState()
 
@@ -102,6 +126,31 @@ export default function Topbar(callback, deps) {
                     {updatedUsers.length > 0 && inputText && inputText.length > 0 && <SearchList input={inputText} userList={updatedUsers} isFirstName={isFirstName}
                         isLastName={isLastName} isEmail={isEmail} />}
                 </div>
+                <div class="topbarCenter">
+                {centerBarData.map((val, key) => {
+                        return (
+                            <>
+                                <div className="dataListItem"
+                                    key={val.title + key}
+                                    onClick={() => {
+                                        if (val.forAdmin && user.isAdmin) {
+                                            window.location.pathname = val.link
+                                        }
+                                        if (val.forAdmin && !user.isAdmin) {
+                                            openNotification('You cant go there');
+                                        }
+                                        if (!val.forAdmin) {
+                                            window.location.pathname = val.link;
+                                        }
+                                    }}>
+                                    <div className="dataIcon">{val.icon}</div>
+                                    <div className="dataItemTitle">{val.title}</div>
+                                </div>
+                            </>
+                        )
+                })}
+                </div>
+
                 <select className="listSearch" onChange={handleChange} >
                     <option value="1">Search By:</option>
                     <option value="1">Email</option>
@@ -110,7 +159,6 @@ export default function Topbar(callback, deps) {
                     <option value="4">Full Name</option>
                     <option value="5">All</option>
                 </select>
-
 
             </div>
             <div className="topbarRight">

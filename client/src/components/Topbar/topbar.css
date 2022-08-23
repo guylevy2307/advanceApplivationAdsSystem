@@ -23,9 +23,13 @@
 
 .topbarCenter {
     flex: 5;
-    padding-left: 10px;
+    padding-left: 15px;
     display: flex;
     flex-direction: row;
+}
+
+.dataListItem {
+    padding-left:30px;
 }
 
 .searchbar {

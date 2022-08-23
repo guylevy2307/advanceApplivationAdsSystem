@@ -1,6 +1,5 @@
 import 'antd/dist/antd.min.css'
 import React from 'react';
-import Sidebar from "../../components/Sidebar/Sidebar";
 import Topbar from "../../components/Topbar/Topbar";
 import UpdateUser from "../../components/UpdateUser/UpdateUser";
 
@@ -9,7 +8,6 @@ const EditUser = () => {
         <>
             <Topbar />
             <div className="homeContainer">
-                <Sidebar />
                 <UpdateUser />
             </div>
         </>

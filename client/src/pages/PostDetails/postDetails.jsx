@@ -4,7 +4,6 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useParams } from "react-router";
 import PostDetails from "../../components/PostDetails/PostDetails";
 import Rightbar from "../../components/Rightbar/Rightbar";
-import Sidebar from "../../components/Sidebar/Sidebar";
 import Topbar from "../../components/Topbar/Topbar";
 import { SERVER_URL } from "../../services/HttpServiceHelper";
 import useMounted from "../../useMounted";
@@ -52,7 +51,6 @@ const PostItem = () => {
         <>
             <Topbar />
             <div className="homeContainer">
-                <Sidebar />
                 {<PostDetails profile={newUser} post={updatedPost}/>}
                 {newUser && newUser.email && <Rightbar profile={newUser}/>}
             </div>

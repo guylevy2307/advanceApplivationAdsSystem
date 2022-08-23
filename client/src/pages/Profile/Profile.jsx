@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router";
 import Feed from "../../components/Feed/Feed";
 import Rightbar from "../../components/Rightbar/Rightbar";
-import Sidebar from "../../components/Sidebar/Sidebar";
 import Topbar from "../../components/Topbar/Topbar";
 import { SERVER_URL } from "../../services/HttpServiceHelper";
 import useMounted from "../../useMounted";
@@ -56,7 +55,6 @@ export default function Profile() {
         <>
             <Topbar />
             <div className="profile">
-                <Sidebar />
                 <div className="profileRight">
                     <div className="profileRightTop">
                         <div className="profileCover">
