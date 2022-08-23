@@ -1,0 +1,12 @@
+.errorContainer {
+
+    text-align: center;
+}
+
+.errorTitle {
+    display: flex;
+    color: red;
+    size: 50pt;
+    text-align: center;
+
+}
