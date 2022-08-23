@@ -51,7 +51,7 @@ const PostDetails = (props) => {
             ]);
         }, 1000);
         const response = await axios.get(SERVER_URL + `/comments/post/${post._id}`);
-        if(response.status === 200) {
+        if (response.status === 200) {
             openNotification('Added comment successfully!');
             setComments(response.data)
         }
@@ -65,7 +65,7 @@ const PostDetails = (props) => {
         const fetchComments = async () => {
             const response = await axios.get(SERVER_URL + `/comments/post/${postID}`);
             const { data } = response;
-            if(isMounted)
+            if (isMounted)
                 setComments(data);
         };
         isMounted && fetchComments();
@@ -74,55 +74,55 @@ const PostDetails = (props) => {
     const updatedPost = useMemo(() => post || {}, [post]);
     const newUser = useMemo(() => user || [], [user]);
     return (
-         <div style={{flex: 5.5}}>
-                <PageHeader
-                    className="site-page-header"
-                    onBack={() => null}
-                    title="Post details"
-                />
-                 <div className="postTopLeft">
-                     <Link to={`/profile/${updatedPost && updatedPost.userEmail}`}>
-                         <img
-                             className="postProfileImg"
-                             src={(newUser && newUser.profilePicture) || "https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png"}
-                            alt=""
-                         />
-                     </Link>
-                     <span className="postUsername">
-                                {newUser && newUser.firstName}
-                            </span>
-                     {(updatedPost) ? <span className="postDate">{moment().subtract(moment.unix(updatedPost.creationDate)).hours() + " hours ago"}</span> : <span></span>}
+        <div style={{ flex: 5.5 }}>
+            <PageHeader
+                className="site-page-header"
+                onBack={() => null}
+                title="Ad details"
+            />
+            <div className="postTopLeft">
+                <Link to={`/profile/${updatedPost && updatedPost.userEmail}`}>
+                    <img
+                        className="postProfileImg"
+                        src={(newUser && newUser.profilePicture) || "https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png"}
+                        alt=""
+                    />
+                </Link>
+                <span className="postUsername">
+                    {newUser && newUser.firstName}
+                </span>
+                {(updatedPost) ? <span className="postDate">{moment().subtract(moment.unix(updatedPost.creationDate)).hours() + " hours ago"}</span> : <span></span>}
 
-                 </div>
-                 <Image
-                     width={200}
-                     src={updatedPost && updatedPost.image}
-                 />
+            </div>
+            <Image
+                width={200}
+                src={updatedPost && updatedPost.image}
+            />
 
-                {newComments && newComments.length > 0 && <List
-                     itemLayout="horizontal"
-                     dataSource={newComments}
-                     renderItem={(item) => (
-                         <List.Item>
-                             <List.Item.Meta
-                                 description={item.content}
-                             />
-                         </List.Item>
-                     )}
-                 />}
+            {newComments && newComments.length > 0 && <List
+                itemLayout="horizontal"
+                dataSource={newComments}
+                renderItem={(item) => (
+                    <List.Item>
+                        <List.Item.Meta
+                            description={item.content}
+                        />
+                    </List.Item>
+                )}
+            />}
 
-             <Comment
-                 avatar={<Avatar src={(newUser && newUser.profilePicture) || "https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png"}/>}
-                 content={
-                     <Editor
-                         onChange={handleChange}
-                         onSubmit={handleSubmit}
-                         submitting={submitting}
-                         value={value}
-                     />
-                 }
-             />
-         </div>
+            <Comment
+                avatar={<Avatar src={(newUser && newUser.profilePicture) || "https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png"} />}
+                content={
+                    <Editor
+                        onChange={handleChange}
+                        onSubmit={handleSubmit}
+                        submitting={submitting}
+                        value={value}
+                    />
+                }
+            />
+        </div>
     )
 }
 
