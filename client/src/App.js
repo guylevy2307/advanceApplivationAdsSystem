@@ -7,7 +7,7 @@ import { SignUp } from "./components/SignUp/SignUp";
 import Admin from "./pages/admin/Admin";
 import EditUser from "./pages/EditUser/EditUser";
 import Home from "./pages/Home/Home";
-import Messenger from "./pages/Messenger/Messenger";
+
 import PostItem from "./pages/PostDetails/postDetails";
 import Profile from "./pages/Profile/Profile";
 import { getCurrentUser } from "./Utils/currentUser";

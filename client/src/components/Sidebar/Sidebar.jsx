@@ -20,7 +20,7 @@ const SidebarData = [
         title: "Data",
         icon: <AdminPanelSettingsIcon />,
         link: "/admin",
-        forAdmin: false
+        forAdmin: true
     }
 ]
 

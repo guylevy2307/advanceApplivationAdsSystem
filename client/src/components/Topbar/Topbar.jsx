@@ -12,6 +12,7 @@ import { getCurrentUser } from "../../Utils/currentUser";
 import SearchList from "./SearchList";
 import "./topbar.css";
 
+
 export default function Topbar(callback, deps) {
     const isUserNameExists = localStorage.getItem("username");
     const isUserPasswordExists = localStorage.getItem("password");
