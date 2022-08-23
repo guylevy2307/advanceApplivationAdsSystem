@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import {SignUpForm} from "./SignUpForm.js";
-import {signUp} from "../../services/UserService";
+import { SignUpForm } from "./SignUpForm.js";
+import { signUp } from "../../services/UserService";
 const FormValidators = require("./validate");
 const validateSignUpForm = FormValidators.validateSignUpForm;
-const zxcvbn = require("zxcvbn");
+
 
 export class SignUpContainer extends Component {
     constructor(props) {
@@ -22,7 +22,7 @@ export class SignUpContainer extends Component {
             score: "0"
         };
 
-        this.pwMask = this.pwMask.bind(this);
+
         this.handleChange = this.handleChange.bind(this);
         this.submitSignup = this.submitSignup.bind(this);
         this.validateForm = this.validateForm.bind(this);
@@ -48,20 +48,6 @@ export class SignUpContainer extends Component {
             user
         });
 
-        if (event.target.value === "") {
-            this.setState(state =>
-                Object.assign({}, state, {
-                    score: "null"
-                })
-            );
-        } else {
-            var pw = zxcvbn(event.target.value);
-            this.setState(state =>
-                Object.assign({}, state, {
-                    score: pw.score + 1
-                })
-            );
-        }
     }
 
     submitSignup(user) {
@@ -92,15 +78,7 @@ export class SignUpContainer extends Component {
         }
     }
 
-    pwMask(event) {
-        event.preventDefault();
-        this.setState(state =>
-            Object.assign({}, state, {
-                type: this.state.type === "password" ? "input" : "password",
-                btnTxt: this.state.btnTxt === "show" ? "hide" : "show"
-            })
-        );
-    }
+
 
     render() {
         return (
@@ -114,7 +92,7 @@ export class SignUpContainer extends Component {
                     score={this.state.score}
                     btnTxt={this.state.btnTxt}
                     type={this.state.type}
-                    pwMask={this.pwMask}
+
                 />
             </div>
         );
