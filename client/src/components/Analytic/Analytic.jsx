@@ -3,7 +3,6 @@ import PieChart from "../PieChart/PieChart";
 import { getDistributionTag, getPostAveragePerUser } from "../../services/PostService";
 import { getMostActive, getPopularFirstNames, getPopularLastNames } from "../../services/UserService";
 import BarChart from "../BarChart/BarChart";
-import Topbar from "../../components/Topbar/Topbar";
 
 
 export default function Analytic() {
@@ -36,13 +35,14 @@ export default function Analytic() {
             setAvgPost(res)
         }
         initAvg()
+        
     }, [])
 
     const [firstNameDataPoints, setFirstNameDataPoints] = useState(null)
     useEffect(() => {
         const initPopularFirstName = async () => {
-            const res = await getPopularFirstNames()
-
+            const res = await getPopularFirstNames();
+            await initalizeTagsDist();
             if (res) {
                 const dataPoints = [
                     {
@@ -115,13 +115,6 @@ export default function Analytic() {
         initMostActive()
     }, [])
 
-    const dataPoints = [
-        { label: "Apple", y: 10 },
-        { label: "Orange", y: 15 },
-        { label: "Banana", y: 25 },
-        { label: "Mango", y: 30 },
-        { label: "Grape", y: 28 }
-    ]
     return (
         <div>
             <div className="container">

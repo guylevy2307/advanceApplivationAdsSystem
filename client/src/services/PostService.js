@@ -8,11 +8,12 @@ export const getAllPosts = async () => {
   return res.data;
 };
 
-export const getDistributionTag = async (tag1, tag2, tag3) => {
+export const getDistributionTag = async (firstTag, secondTag, thirdTag) => {
+  console.log("ADSASD");
   const res = await axios.post(`${POST_SERVICE}/utils/tags`, {
-    tag1,
-    tag2,
-    tag3,
+    tag1: firstTag,
+    tag2: secondTag,
+    tag3: thirdTag,
   });
   if (res.status !== 200) return null;
   return res.data;

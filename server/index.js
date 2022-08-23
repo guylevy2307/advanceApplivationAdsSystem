@@ -3,13 +3,11 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const UserRouter = require("./Routes/userRoutes");
-const PostRouter = require("./Routes/postRoutes");
-const CommentRouter = require("./Routes/commentRoutes");
-const CMSFunc = require("./Utils/most-popular-first-names");
-const { conversationRouter } = require("./Routes/conversationRoutes");
-const { messageRouter } = require("./Routes/messageRoutes");
-// const User = require("./Controllers/userController");
+const UserRouter = require("./users/user.routes");
+const PostRouter = require("./posts/post.routes");
+const { conversationRouter } = require("./routes/conversation.routes");
+const { messageRouter } = require("./routes/message.routes");
+const CommentRouter = require("./comments/comment.routes");
 
 dotenv.config();
 const port = process.env.port || 5001;

@@ -1,11 +1,11 @@
-const Post = require("../Models/Post");
-const User = require("../Models/User");
+const Post = require("./Post");
+const User = require("../users/User");
 const AhoCorasick = require("ahocorasick");
 const {
   AddPostToUser,
   deletePostFromUser,
   getAllUserAddresses,
-} = require("./userController");
+} = require("../users/userController");
 
 const readPosts = async (req, res) => {
   try {
@@ -26,29 +26,30 @@ const readPosts = async (req, res) => {
   }
 };
 
-const getPopularPostThemes = async (tag1, tag2, tag3) => {
-  let keywords = [tag1, tag2, tag3];
-  let ac = new AhoCorasick(keywords); // add whatever tags you want in here
-  let allPosts = await readPosts(null, null);
+const getPopularPostThemes = async (firstTag, secondTag, thirdTag) => {
+  const ahoCorasickAlgo = new AhoCorasick([firstTag, secondTag, thirdTag]);
+  const allPosts = await readPosts(null, null);
   if (!allPosts) {
-    console.log(allPosts);
-    console.log("No users in DB");
+    console.log("No users" + allPosts);
     return;
   }
   let result = {};
   for (let i = 0; i < allPosts.length; i++) {
     let content = allPosts[i].content;
-    let results = ac.search(content);
+    let results = ahoCorasickAlgo.search(content);
     for (let j = 0; j < results.length; j++) {
       let key = results[j][1][0];
       if (result.hasOwnProperty(key)) result[key]++;
       else result[key] = 1;
     }
   }
-  console.log(result);
+
   for (let i in keywords) {
     console.log(
-      "Amount of " + keywords[i] + " related posts: " + result[keywords[i]]
+      "as of keyword" +
+        keywords[i] +
+        " the amount related posts is " +
+        result[keywords[i]]
     );
   }
   return result;
@@ -288,6 +289,31 @@ const deletePost = async (req, res) => {
   }
 };
 
+const getAveragePostAmount = async (req, res) => {
+  let sent = false;
+  await User.find(function (error, result) {
+    if (error || !result) {
+      res.status(400).send("Error or no results");
+      sent = true;
+    }
+    if (!result && !sent) {
+      res.status(400).send("Error or no results");
+      sent = true;
+    }
+    const postLengths = result.map((item) => item.allPostIDs.length);
+    result = postLengths.reduce((a, b) => a + b, 0) / postLengths.length;
+    if (!sent) {
+      res
+        .status(200)
+        .send(
+          "The average amount of ads per user in our app is: " +
+            result.toPrecision(3)
+        );
+      sent = true;
+    }
+  }).clone();
+};
+
 module.exports = {
   readPosts,
   createPost,
@@ -298,4 +324,6 @@ module.exports = {
   addCommentToPost,
   deleteCommentFromPost,
   getTagsFrequencies,
+  getPopularPostThemes,
+  getAveragePostAmount,
 };

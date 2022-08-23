@@ -136,7 +136,7 @@ export default function Topbar(callback, deps) {
                     <option value="4">Full Name</option>
                     <option value="5">All</option>
                 </select>
-                <div class="topbarCenter">
+                <div className="topbarCenter">
                     {centerBarData.map((val, key) => {
                         return (
                             <>
