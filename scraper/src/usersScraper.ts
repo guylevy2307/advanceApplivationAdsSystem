@@ -41,29 +41,35 @@ export class NamesScraper {
     await totalNamesToGenerate.fill(addresses.length.toString());
 
     while (true) {
-      const submitButton1 = await page.locator(
-        "//button[text()='Generate Names']"
-      );
-      await submitButton1.click();
+      try {
+        const submitButton1 = await page.locator(
+          "//button[text()='Generate Names']"
+        );
+        await submitButton1.click();
+        await page.waitForTimeout(3000);
+        await page.waitForLoadState("networkidle");
 
-      await page.waitForLoadState("networkidle");
-
-      const names_div = await page.locator(
-        "body > div.container-fluid.f-base-container > div.container-lg.content-container > div > div.main-tool > div.row > div > div.card > div.card-body > ul > li"
-      );
-      const namesItemCounter = await names_div.count();
-      if (!namesItemCounter) {
+        const names_div = await page.locator(
+          "body > div.container-fluid.f-base-container > div.container-lg.content-container > div > div.main-tool > div.row > div > div.card > div.card-body > ul > li"
+        );
+        const namesItemCounter = await names_div.count();
+        if (!namesItemCounter) {
+          continue;
+        }
+        for (let i = 0; i < namesItemCounter; i++) {
+          try {
+            const current_name = names_div.nth(i);
+            const full_name = await current_name.innerText();
+            first_names.push(full_name.split(" ")[0]);
+            last_names.push(full_name.split(" ")[1]);
+          } catch (e) {}
+        }
+        break;
+      } catch (e) {
+        console.error(e);
+        console.log("continueing");
         continue;
       }
-      for (let i = 0; i < namesItemCounter; i++) {
-        try {
-          const current_name = names_div.nth(i);
-          const full_name = await current_name.innerText();
-          first_names.push(full_name.split(" ")[0]);
-          last_names.push(full_name.split(" ")[1]);
-        } catch (e) {}
-      }
-      break;
     }
 
     const newUsers = addresses.map((current_address, i) => {
@@ -75,7 +81,6 @@ export class NamesScraper {
         current_address
       );
       return user;
-      console.log(user);
     });
 
     return newUsers;
