@@ -14,11 +14,22 @@ mongoose
     useCreateIndex: true,
     useUnifiedTopology: true,
   })
-  .then(() => {
+  .then(async () => {
     console.log("Ready to use mongo.");
     // const scraper = new AdsScraper();
     const scraper = new usersScraper();
-    scraper.scrape();
+    const users = await scraper.scrape();
+    for (const user of users) {
+      const url = "http://localhost:5001/users/";
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      return response.json();
+    }
   })
   .catch((err) => {
     console.log(
