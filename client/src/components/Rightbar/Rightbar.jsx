@@ -4,6 +4,8 @@ import useMounted from "../../useMounted";
 import { getUserFriends } from "../../services/UserService";
 import Friend from "../Friend/Friend";
 import "./rightbar.css";
+import {Link} from "react-router-dom";
+import {getCurrentUser} from "../../Utils/currentUser";
 
 const Rightbar = (props) => {
     const [friendList, setFriendList] = useState([]);
@@ -58,6 +60,7 @@ const Rightbar = (props) => {
                             <Friend key={u._id} user={u} />
                         ))}
                     </ul>
+                    <Link  to={`/updateUser/${getCurrentUser().email}`} style={{ textDecoration: "none" }}>asd</Link>
                 </>
             </div>
         </div>
@@ -65,3 +68,4 @@ const Rightbar = (props) => {
 }
 
 export default React.memo(Rightbar);
+

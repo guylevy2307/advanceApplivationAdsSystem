@@ -64,8 +64,8 @@
     flex: 4;
     display: flex;
     align-items: center;
-    justify-content: space-around;
     color: white;
+    justify-content: flex-end;
 }
 
 .topbarLinks {
@@ -103,12 +103,9 @@
     font-size: 12px;
 }
 
-.topbarImg {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
+.topbarImage {
     cursor: pointer;
+    margin-right: 20px;
 }
 
 .listSearch {
@@ -117,3 +114,4 @@
     border-radius: 30px;
     align-items: right;
 }
+

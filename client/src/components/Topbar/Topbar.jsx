@@ -13,7 +13,8 @@ import { getCurrentUser } from "../../Utils/currentUser";
 import SearchList from "./SearchList";
 import "./topbar.css";
 
-export default function Topbar(callback, deps) {
+export default function Topbar(props) {
+    console.log('props', props)
     const isUserNameExists = localStorage.getItem("username");
     const isUserPasswordExists = localStorage.getItem("password");
     const nav = useNavigate();
@@ -158,13 +159,12 @@ export default function Topbar(callback, deps) {
                 </div>
             </div>
             <div className="topbarRight">
-
                 <div className="topbarImage">
-                    <Link to={`/updateUser/${getCurrentUser().email}`} style={{ textDecoration: "none" }}>
-                        <Person />
-                    </Link>
-                </div>
-                <div className="topbarImage">
+                    <Button className="topbarImage" variant="outlined" onClick={(e) => {
+                        props.onUserTap()
+                    }} >
+                        <Person/>
+                    </Button>
                     <Button variant="outlined" onClick={(e) => {
                         onClickLogOut(isUserNameExists, isUserPasswordExists)
                     }} >
