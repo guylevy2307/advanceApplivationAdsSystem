@@ -51,7 +51,7 @@ const Rightbar = (props) => {
                             <span className="rightbarInfoValue">{profile.email}</span>
                         </div>
                         <Link  to={`/updateUser/${getCurrentUser().email}`} style={{ textDecoration: "none" }}>
-                            Edit profile
+                           ✏️ Edit profile
                         </Link>
                     </div>}
 
