@@ -6,7 +6,7 @@ import 'antd/dist/antd.min.css';
 import axios from "axios";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import logoImage from '../../public/adsystem.png';
+import logoImage from '../../public/adsystem-removebg.png';
 import { API_URL } from "../../services/Api";
 import useMounted from '../../useMounted';
 import { getCurrentUser } from "../../Utils/currentUser";

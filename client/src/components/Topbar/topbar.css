@@ -39,6 +39,7 @@
     display: block;
     align-items: center;
     padding-left: 20px;
+    margin-top: 7px;
 }
 
 .userRow {
@@ -113,5 +114,6 @@
     height: 30px;
     border-radius: 30px;
     align-items: right;
+    margin-top: 10px;
 }
 

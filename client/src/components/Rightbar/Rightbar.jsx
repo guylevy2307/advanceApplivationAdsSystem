@@ -30,7 +30,6 @@ const Rightbar = (props) => {
         <div className="rightbar">
             <div className="rightbarWrapper">
                 <>
-                    <h4 className="rightbarTitle">User information</h4>
                     {profile && <div className="rightbarInfo">
                         <div className="rightbarInfoItem">
                             <Avatar
