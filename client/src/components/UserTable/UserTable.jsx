@@ -11,15 +11,15 @@ import './userTable.css';
 
 
 
-export default function UserTable(){
+export default function UserTable() {
 
     const navigate = useNavigate()
-    const [allUserList,setAllUserList] = useState(null)
-    const [addressesList,setAddressesList] = useState(null)
-    const [flagToLoadAgain,setFlagToLoadAgian] = useState(0)
+    const [allUserList, setAllUserList] = useState(null)
+    const [addressesList, setAddressesList] = useState(null)
+    const [flagToLoadAgain, setFlagToLoadAgian] = useState(0)
     const deleteUser = async (email) => {
         const result = await deleteUserByEmail(email)
-        if(result){
+        if (result) {
             console.log(`user ${email} is deleted`)
             setFlagToLoadAgian(1 - flagToLoadAgain) //switch each time this method is called
         }
@@ -29,50 +29,51 @@ export default function UserTable(){
     }
 
     const columns = [
-        { field: 'email', headerName: 'Email', width: 300, sortable: false},
+        { field: 'email', headerName: 'Email', width: 250, sortable: false },
         { field: 'firstName', headerName: 'First name', width: 130, sortable: false },
         { field: 'lastName', headerName: 'Last name', width: 130, sortable: false },
         { field: 'address', headerName: 'Address', width: 130, sortable: false },
-        { field: 'numOfFriends', headerName: 'Amount Of Friends', width: 140, sortable: false, valueGetter: (params) => `${ params.row?.friends?.length ||'0'}` },
-        { field: 'createdAt', headerName: 'Created at', width: 180, sortable: false, valueGetter: (params) => {
-                try{
+        { field: 'numOfFriends', headerName: 'Amount Of Connections', width: 140, sortable: false, valueGetter: (params) => `${params.row?.friends?.length || '0'}` },
+        {
+            field: 'createdAt', headerName: 'Created time', width: 180, sortable: false, valueGetter: (params) => {
+                try {
                     const creationDate = new Date(Number(params.row.creationDate))
                     return `${creationDate.getUTCDate()}/${creationDate.getUTCMonth() + 1}/${creationDate.getUTCFullYear()} ${creationDate.getUTCHours()}:${creationDate.getUTCMinutes()}:${creationDate.getUTCSeconds()} UTC`
-                }catch{
+                } catch {
                     return 'unknown'
                 }
             }
         },
-        {field: 'isAdmin', headerName: 'Admin', width: 120, sortable: false, renderCell: (params) => params.row?.isAdmin? <DoneIcon style={{color:"green"}}/> : <ClearIcon style={{color:"red"}}/>},
-        {field: 'actions', headerName: 'Actions', width: 240,sortable: false, renderCell: (params) => <ActionList deleteAction={e=>deleteUser(params.row?.email)} updateAction={e=>navigate(`/updateUser/${params.row.email}`)}/>}
+        { field: 'isAdmin', headerName: 'Admin', width: 120, sortable: false, renderCell: (params) => params.row?.isAdmin ? <DoneIcon style={{ color: "green" }} /> : <ClearIcon style={{ color: "red" }} /> },
+        { field: 'actions', headerName: 'Actions', width: 240, sortable: false, renderCell: (params) => <ActionList deleteAction={e => deleteUser(params.row?.email)} updateAction={e => navigate(`/updateUser/${params.row.email}`)} /> }
     ]
 
     useEffect(() => {
         const initializeUserList = async () => {
-            try{
+            try {
                 const userList = await getAllUsers()
                 setAllUserList(userList)
-            }catch{
+            } catch {
                 setAllUserList([])
             }
         }
         initializeUserList()
     }, [flagToLoadAgain])
-    useEffect(()=>{
+    useEffect(() => {
         const initializeAddressesList = async () => {
-            try{
+            try {
                 const list = await getAllAddresses()
                 console.log(`list from server:`)
                 setAddressesList(list)
-            }catch (err){
+            } catch (err) {
                 console.log(err)
                 setAddressesList([])
-            }finally {
+            } finally {
                 console.log(addressesList)
             }
         }
         initializeAddressesList()
-    },[flagToLoadAgain])
+    }, [flagToLoadAgain])
     return (
         <>
             <div className="userTable">
@@ -89,14 +90,14 @@ export default function UserTable(){
                     {
                         addressesList ?
                             <div className="googleMap">
-                                <CustomGoogleMap points={addressesList}/>
+                                <CustomGoogleMap points={addressesList} />
                             </div> :
                             <div>
-                                <h1 style={{"textAlign":"center"}}>
+                                <h1 style={{ "textAlign": "center" }}>
                                     Loading Users' Addresses on Map
                                 </h1>
-                                <div style={{"textAlign":"center"}}>
-                                    <CircularProgress style={{"display":"inline-block", "color": "#d4cb7b"}}/>
+                                <div style={{ "textAlign": "center" }}>
+                                    <CircularProgress style={{ "display": "inline-block", "color": "#d4cb7b" }} />
                                 </div>
 
                             </div>
