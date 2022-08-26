@@ -3,6 +3,7 @@
     margin-left: 15px;
     display: flex;
     justify-content: center;
+    transition: flex 250ms linear;
 }
 
 .feedWrapper{
