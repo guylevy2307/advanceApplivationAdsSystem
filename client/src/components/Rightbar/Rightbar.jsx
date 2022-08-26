@@ -50,6 +50,9 @@ const Rightbar = (props) => {
                             <span className="rightbarInfoKey">Email:</span>
                             <span className="rightbarInfoValue">{profile.email}</span>
                         </div>
+                        <Link  to={`/updateUser/${getCurrentUser().email}`} style={{ textDecoration: "none" }}>
+                            Edit profile
+                        </Link>
                     </div>}
 
                     <hr className="rightbarHr" />
@@ -59,7 +62,6 @@ const Rightbar = (props) => {
                             <Friend key={u._id} user={u} />
                         ))}
                     </ul>
-                    <Link  to={`/updateUser/${getCurrentUser().email}`} style={{ textDecoration: "none" }}>asd</Link>
                 </>
             </div>
         </div>

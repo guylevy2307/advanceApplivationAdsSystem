@@ -1,7 +1,7 @@
 .rightbar {
     flex: 3;
     margin-left: 20px;
-    background-color: rgb(94, 156, 254);
+    background-color: rgb(165, 195, 244);
     transition: flex 250ms linear;
     padding-left: 40px;
     border-radius: 0px 0px 0px 20px;
