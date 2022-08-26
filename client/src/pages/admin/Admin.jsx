@@ -11,7 +11,7 @@ import Error from "../../pages/Error/Error";
 //icons
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import StickyNote2Icon from '@mui/icons-material/StickyNote2';
-import QueryStatsIcon from '@mui/icons-material/QueryStats';
+import BarChartSharp from '@mui/icons-material/BarChartSharp';
 
 
 
@@ -22,18 +22,18 @@ export default function Admin() {
 
     const menuOption = [
         {
-            title: 'Users',
+            title: 'Users List',
             icon: <PeopleAltIcon />,
             action: e => setSelectedView(<UserTable />)
         },
         {
-            title: 'Posts',
+            title: 'Ads On Site',
             icon: <StickyNote2Icon />,
             action: e => setSelectedView(<PostTable />)
         },
         {
-            title: 'Analytics Info',
-            icon: <QueryStatsIcon />,
+            title: 'Analytics',
+            icon: <BarChartSharp />,
             action: e => setSelectedView(<Analytic />)
         }
     ]
