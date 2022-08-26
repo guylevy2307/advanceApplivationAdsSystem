@@ -1,6 +1,8 @@
 .rightbar {
     flex: 3;
     margin-left: 20px;
+    background-color: rgb(94, 156, 254);
+    transition: flex 250ms linear;
 }
 
 .rightbarWrapper {

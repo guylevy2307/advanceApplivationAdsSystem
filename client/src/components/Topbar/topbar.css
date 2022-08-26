@@ -1,7 +1,7 @@
 .topbarContainer {
     height: 50px;
     width: 100%;
-    background-color: #95eaf1;
+    background-color: rgb(94, 156, 254);
     display: flex;
     align-items: center;
     position: sticky;
@@ -64,8 +64,8 @@
     flex: 4;
     display: flex;
     align-items: center;
-    justify-content: space-around;
     color: white;
+    justify-content: flex-end;
 }
 
 .topbarLinks {
@@ -103,12 +103,9 @@
     font-size: 12px;
 }
 
-.topbarImg {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
+.topbarImage {
     cursor: pointer;
+    margin-right: 20px;
 }
 
 .listSearch {
@@ -117,3 +114,4 @@
     border-radius: 30px;
     align-items: right;
 }
+
