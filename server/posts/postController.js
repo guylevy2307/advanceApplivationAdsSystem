@@ -47,9 +47,9 @@ const getPopularPostThemes = async (firstTag, secondTag, thirdTag) => {
   for (let i in keywords) {
     console.log(
       "as of keyword" +
-        keywords[i] +
-        " the amount related posts is " +
-        result[keywords[i]]
+      keywords[i] +
+      " the amount related posts is " +
+      result[keywords[i]]
     );
   }
   return result;
@@ -195,6 +195,7 @@ const addCommentToPost = async (req) => {
     await Post.findById(req.postID, async function (error, docs) {
       if (error || !docs) {
         succeeded = false;
+
       }
       allCommentsIDs = docs.allCommentIDs;
       if (allCommentsIDs == null) allCommentsIDs = [];
@@ -205,7 +206,7 @@ const addCommentToPost = async (req) => {
 
       let result = await Post.findByIdAndUpdate(
         req.postID,
-        { allCommentsIDs: allCommentsIDs },
+        { allCommentIDs: allCommentsIDs },
         { new: true }
       ).clone();
       return result;
@@ -307,7 +308,7 @@ const getAveragePostAmount = async (req, res) => {
         .status(200)
         .send(
           "The average amount of ads per user in our app is: " +
-            result.toPrecision(3)
+          result.toPrecision(3)
         );
       sent = true;
     }
