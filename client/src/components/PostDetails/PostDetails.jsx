@@ -9,6 +9,8 @@ import moment from "moment";
 import useMounted from "../../useMounted";
 import { API_URL } from "../../services/Api";
 
+
+
 const Editor = ({ onChange, onSubmit, submitting, value }) => (
     <>
         <Form.Item>
@@ -50,9 +52,8 @@ const PostDetails = (props) => {
                 },
             ]);
         }, 1000);
-        console.log(post);
-        console.log(value);
-        const responseCreate = await axios.post(API_URL + `/comments/`,{postID: post._id, content: value });
+
+        const responseCreate = await axios.post(API_URL + `/comments/`, { postID: post._id, content: value });
 
         const response = await axios.get(API_URL + `/comments/post/${post._id}`);
         if (response.status === 200) {

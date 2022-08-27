@@ -8,7 +8,7 @@ const PostRouter = require("./posts/post.routes");
 const CommentRouter = require("./comments/comment.routes");
 
 dotenv.config();
-const port = process.env.port || 5001;
+const port = 5001;
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -41,4 +41,4 @@ mongoose
       console.log(`server is running on port: ${port}`);
     })
   )
-  .catch((err) => console.log("dont succeed to connect"));
+  .catch((err) => console.log("cannot connect"));

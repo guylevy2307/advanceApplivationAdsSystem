@@ -20,27 +20,118 @@ const SearchList = (props) => {
             return toSearch.toLowerCase().includes(props.input)
         }
     })
-    return (
-        <div className="searchList">
-            {filteredData.length > 0 && filteredData.map((u) => (
-                <div className="userRow">
-                    <Link to={`/profile/${u.email}`}>
-                        <img
-                            className="postProfileImg"
-                            src={u.profilePicture ? u.profilePicture : "https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png"}
-                            alt=""
-                        />
-                    </Link>
+    if (isEmail && !isFirstName && !isLastName) {
+        return (
+            <div className="searchList">
+                {filteredData.length > 0 && filteredData.map((u) => (
+                    <div className="userRow">
+                        <Link to={`/profile/${u.email}`}>
+                            <img
+                                className="postProfileImg"
+                                src={u.profilePicture ? u.profilePicture : "https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png"}
+                                alt=""
+                            />
+                        </Link>
 
-                    <span className="postUsername">
-                        {u.firstName + " " + u.lastName + " Email: " + u.email}
-                    </span>
+                        <span className="postUsername">
+                            {" Email: " + u.email}
+                        </span>
 
 
-                </div>
-            ))}
-        </div>
-    )
+                    </div>
+                ))}
+            </div>
+        )
+    } else if (!isEmail && isFirstName && !isLastName) {
+        return (
+            <div className="searchList">
+                {filteredData.length > 0 && filteredData.map((u) => (
+                    <div className="userRow">
+                        <Link to={`/profile/${u.email}`}>
+                            <img
+                                className="postProfileImg"
+                                src={u.profilePicture ? u.profilePicture : "https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png"}
+                                alt=""
+                            />
+                        </Link>
+
+                        <span className="postUsername">
+                            {"First name: " + u.firstName}
+                        </span>
+
+
+                    </div>
+                ))}
+            </div>
+        )
+    }
+    else if (!isEmail && !isFirstName && isLastName) {
+        return (
+            <div className="searchList">
+                {filteredData.length > 0 && filteredData.map((u) => (
+                    <div className="userRow">
+                        <Link to={`/profile/${u.email}`}>
+                            <img
+                                className="postProfileImg"
+                                src={u.profilePicture ? u.profilePicture : "https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png"}
+                                alt=""
+                            />
+                        </Link>
+
+                        <span className="postUsername">
+                            {"Last name: " + u.lastName}
+                        </span>
+
+
+                    </div>
+                ))}
+            </div>
+        )
+    } else if (!isEmail && isFirstName && isLastName) {
+        return (
+            <div className="searchList">
+                {filteredData.length > 0 && filteredData.map((u) => (
+                    <div className="userRow">
+                        <Link to={`/profile/${u.email}`}>
+                            <img
+                                className="postProfileImg"
+                                src={u.profilePicture ? u.profilePicture : "https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png"}
+                                alt=""
+                            />
+                        </Link>
+
+                        <span className="postUsername">
+                            {"Full name: " + u.firstName + " " + u.lastName}
+                        </span>
+
+
+                    </div>
+                ))}
+            </div>
+        )
+    } else if (isEmail && isFirstName && isLastName) {
+        return (
+            <div className="searchList">
+                {filteredData.length > 0 && filteredData.map((u) => (
+                    <div className="userRow">
+                        <Link to={`/profile/${u.email}`}>
+                            <img
+                                className="postProfileImg"
+                                src={u.profilePicture ? u.profilePicture : "https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png"}
+                                alt=""
+                            />
+                        </Link>
+
+                        <span className="postUsername">
+                            {"Full Name: " + u.firstName + " " + u.lastName + " Email: " + u.email}
+                        </span>
+
+                    </div>
+                ))}
+            </div>
+        )
+    }
 }
 
 export default React.memo(SearchList)
+

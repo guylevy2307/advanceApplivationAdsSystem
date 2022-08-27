@@ -14,15 +14,15 @@ import SearchList from "./SearchList";
 import "./topbar.css";
 
 export default function Topbar(props) {
-    console.log('props', props)
+    //console.log('props', props)
     const isUserNameExists = localStorage.getItem("username");
     const isUserPasswordExists = localStorage.getItem("password");
     const nav = useNavigate();
     const [inputText, setInputText] = useState("");
     const [users, setUsers] = useState([]);
-    const [isFirstName, setIsFirstName] = useState(true);
-    const [isLastName, setIsLastName] = useState(true);
-    const [isEmail, setIsEmail] = useState(true);
+    var [isFirstName, setIsFirstName] = useState(false);
+    var [isLastName, setIsLastName] = useState(false);
+    var [isEmail, setIsEmail] = useState(true);
     const user = getCurrentUser();
 
     const isMounted = useMounted();
@@ -71,32 +71,39 @@ export default function Topbar(props) {
         });
     };
 
-    const [option, setOption] = useState()
+
 
     function handleChange(event) {
-        setOption(event.target.value)
+        console.log(event.target.value);
+        console.log(isFirstName + " " + isLastName + " " + isEmail)
+
         var choose = event.target.value;
         if (choose == 1) {
-            isFirstName = false;
-            isLastName = false;
-            isEmail = true;
+            setIsFirstName(false)
+            setIsLastName(false)
+            setIsEmail(true)
         } else if (choose == 2) {
-            isFirstName = true;
-            isLastName = false;
-            isEmail = false;
+            setIsFirstName(true)
+            setIsLastName(false)
+            setIsEmail(false)
+
         } else if (choose == 3) {
-            isFirstName = false;
-            isLastName = false;
-            isEmail = true;
+            setIsFirstName(false)
+            setIsLastName(true)
+            setIsEmail(false)
+
         } else if (choose == 4) {
-            isFirstName = true;
-            isLastName = true;
-            isEmail = false;
+            setIsFirstName(true)
+            setIsLastName(true)
+            setIsEmail(false)
+
         } else if (choose == 5) {
-            isFirstName = true;
-            isLastName = true;
-            isEmail = true;
+            setIsFirstName(true)
+            setIsLastName(true)
+            setIsEmail(true)
+
         }
+
         console.log(isFirstName + " " + isLastName + " " + isEmail)
     }
 
@@ -163,7 +170,7 @@ export default function Topbar(props) {
                     <Button className="topbarImage" variant="outlined" onClick={(e) => {
                         props.onUserTap()
                     }} >
-                        <Person/>
+                        <Person />
                     </Button>
                     <Button variant="outlined" onClick={(e) => {
                         onClickLogOut(isUserNameExists, isUserPasswordExists)
@@ -172,6 +179,6 @@ export default function Topbar(props) {
                     </Button>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
