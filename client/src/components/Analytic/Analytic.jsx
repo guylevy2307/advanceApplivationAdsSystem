@@ -3,46 +3,43 @@ import PieChart from "../PieChart/PieChart";
 import { getDistributionTag, getPostAveragePerUser } from "../../services/PostService";
 import { getMostActive, getPopularFirstNames, getPopularLastNames } from "../../services/UserService";
 import BarChart from "../BarChart/BarChart";
+import { io } from "socket.io-client";
 
 
 export default function Analytic() {
+    const [userCount, setUserCount] = useState(0);
+    var [socket, setSocket] = useState(null);
+
 
     const [distributionBetweenPost, setDistributionBetweenPost] = useState(null)
     const [avgPost, setAvgPost] = useState(null)
-    const tag1 = useRef()
-    const tag2 = useRef()
-    const tag3 = useRef()
-    const initalizeTagsDist = async () => {
-        if (!(tag1.current.value && tag2.current.value && tag3.current.value)) {
-            setDistributionBetweenPost(null)
-            return
-        }
-        if (tag1.current.value === tag2.current.value || tag2.current.value === tag3.current.value || tag1.current.value === tag3.current.value) {
-            setDistributionBetweenPost(null)
-            return
-        }
-        const res = await getDistributionTag(tag1.current.value, tag2.current.value, tag3.current.value)
-        let listData = []
-        for (let index in Object.keys(res)) {
-            const key = Object.keys(res)[index]
-            listData.push({ item: key, count: res[key] })
-        }
-        setDistributionBetweenPost(listData)
-    }
+    useEffect(() => {
+        socket = io("http://localhost:5000");
+    }, [socket])
+
+    useEffect(() => {
+        socket.emit('sendOnlineUser');
+        socket.on("getOnlineUser", function (data) {
+            //alert(data);
+            setUserCount(data);
+        });
+
+    }, [socket])
+
     useEffect(() => {
         const initAvg = async () => {
             const res = await getPostAveragePerUser()
             setAvgPost(res)
         }
         initAvg()
-        
+
     }, [])
 
     const [firstNameDataPoints, setFirstNameDataPoints] = useState(null)
     useEffect(() => {
         const initPopularFirstName = async () => {
             const res = await getPopularFirstNames();
-            await initalizeTagsDist();
+            //await initalizeTagsDist();
             if (res) {
                 const dataPoints = [
                     {
@@ -118,6 +115,7 @@ export default function Analytic() {
     return (
         <div>
             <div className="container">
+                <h2> Right Now You have {userCount} Users Online! </h2>
 
                 {distributionBetweenPost && <PieChart data={distributionBetweenPost} />}
 

@@ -7,6 +7,7 @@ import PostTable from "../../components/PostTable/PostTable";
 import { getCurrentUser } from "../../Utils/currentUser";
 import Analytic from "../../components/Analytic/Analytic";
 import Error from "../../pages/Error/Error";
+import { useNavigate } from "react-router-dom";
 
 //icons
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
@@ -17,6 +18,8 @@ import BarChartSharp from '@mui/icons-material/BarChartSharp';
 
 
 export default function Admin() {
+    const navigate = useNavigate();
+
     const [selectedView, setSelectedView] = useState(<div />)
     const user = getCurrentUser();
 
@@ -57,8 +60,9 @@ export default function Admin() {
 
     } else {
         return (
-            <Error />
+            navigate("/")
         )
+
     }
 
 }

@@ -11,9 +11,22 @@ import Home from "./pages/Home/Home";
 import PostItem from "./pages/PostDetails/postDetails";
 import Profile from "./pages/Profile/Profile";
 import { getCurrentUser } from "./Utils/currentUser";
+import { io } from "socket.io-client";
+import { useEffect, useState } from "react";
+
 
 function App() {
   const user = getCurrentUser();
+  /* var [socket, setSocket] = useState(null);
+ 
+   useEffect(() => {
+     socket = io("http://localhost:5000");
+   }, [])
+   useEffect(() => {
+     console.log(user.email)
+     socket.emit("newUser", user.email)
+   }, [socket, user])
+ */
 
   return (
     <div className="App">

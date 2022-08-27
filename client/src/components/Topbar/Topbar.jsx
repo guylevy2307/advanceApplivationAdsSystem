@@ -12,8 +12,10 @@ import useMounted from '../../useMounted';
 import { getCurrentUser } from "../../Utils/currentUser";
 import SearchList from "./SearchList";
 import "./topbar.css";
+import { io } from "socket.io-client";
 
 export default function Topbar(props) {
+
     //console.log('props', props)
     const isUserNameExists = localStorage.getItem("username");
     const isUserPasswordExists = localStorage.getItem("password");
@@ -26,7 +28,14 @@ export default function Topbar(props) {
     const user = getCurrentUser();
 
     const isMounted = useMounted();
+    var [socket, setSocket] = useState(null);
 
+    useEffect(() => {
+        socket = io("http://localhost:5000");
+        if (user.email !== null) {
+            socket.emit("newUser", user.email);
+        }
+    }, [socket])
     const inputHandler = useCallback((e) => {
         //convert input text to lower case
         let lowerCase = e.target.value.toLowerCase();
@@ -34,9 +43,9 @@ export default function Topbar(props) {
     }, []);
 
     const onClickLogOut = (isUserNameExists, isUserPasswordExists) => {
+        socket.emit("logout", user.email);
         localStorage.clear();
         nav('/login');
-
         return
     };
 
