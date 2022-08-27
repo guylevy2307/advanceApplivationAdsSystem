@@ -199,7 +199,7 @@ const addCommentToPost = async (req) => {
       }
       allCommentsIDs = docs.allCommentIDs;
       if (allCommentsIDs == null) allCommentsIDs = [];
-      console.log(docs);
+      //console.log(docs);
       if (!succeeded) return false;
       let newCommentId = req.commentID;
       allCommentsIDs.push(newCommentId);

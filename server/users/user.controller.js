@@ -85,7 +85,7 @@ const logIn = async (req, res) => {
           });
           sent = true;
         } else {
-          console.log(docs);
+          //console.log(docs);
           if (req.body.password !== docs.password) {
             if (!sent) {
               res.status(400).json({
@@ -290,7 +290,7 @@ const getMostActiveUsers = async (req, res) => {
 
       async function (err, result) {
         console.log("Before getting user data:");
-        console.log(result);
+        //console.log(result);
         if (err) {
           if (res && !sent) {
             res.status(400).json({ message: err });
@@ -315,7 +315,7 @@ const getMostActiveUsers = async (req, res) => {
             ).clone();
           }
           console.log("After getting user data:");
-          console.log(updatedResult);
+          //console.log(updatedResult);
           if (res && !sent) {
             res.status(200).json(
               updatedResult.slice(0, 3).map((u) => {
@@ -481,7 +481,7 @@ const AddPostToUser = async (req) => {
         }
         allPostIDs = docs.allPostIDs;
         if (allPostIDs == null) allPostIDs = [];
-        console.log(docs);
+        //console.log(docs);
         if (!succeeded) return false;
         let newPostId = req.postID;
         allPostIDs.push(newPostId);
