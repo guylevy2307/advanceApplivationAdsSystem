@@ -44,7 +44,8 @@ export default function Topbar(props) {
     }, []);
 
     const onClickLogOut = (isUserNameExists, isUserPasswordExists) => {
-        socket.emit("logout", user.email);
+        if (isUserNameExists)
+            socket.emit("logout", user.email);
         localStorage.clear();
         nav('/login');
         return
