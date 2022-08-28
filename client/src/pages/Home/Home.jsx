@@ -17,11 +17,9 @@ export default function Home() {
     setShowUserInfo(!showUserInfo);
 
   };
-  const [userInfoPopup, setBtnState] = useState(false);
   const user = getCurrentUser();
-
   useEffect(() => {
-    if (user.email === null) {
+    if (user.email === null || !user) {
       return (
         navigate("/register")
       )
@@ -40,4 +38,3 @@ export default function Home() {
   )
 }
 
-//{showUserInfo && <Rightbar profile={getCurrentUser()} />}
