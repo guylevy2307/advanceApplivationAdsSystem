@@ -6,6 +6,7 @@ import Rightbar from "../../components/Rightbar/Rightbar";
 import { getCurrentUser } from "../../Utils/currentUser";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Popup from "../../components/Popup/Popup";
 
 
 export default function Home() {
@@ -14,7 +15,9 @@ export default function Home() {
   const [showUserInfo, setShowUserInfo] = useState(false);
   const toggleShowUserInfo = () => {
     setShowUserInfo(!showUserInfo);
+
   };
+  const [userInfoPopup, setBtnState] = useState(false);
   const user = getCurrentUser();
 
   useEffect(() => {
@@ -31,8 +34,10 @@ export default function Home() {
       <Topbar onUserTap={toggleShowUserInfo} />
       <div className="homeContainer">
         <Feed />
-        {showUserInfo && <Rightbar profile={getCurrentUser()} />}
+
       </div>
     </>
   )
 }
+
+//{showUserInfo && <Rightbar profile={getCurrentUser()} />}

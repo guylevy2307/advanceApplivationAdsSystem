@@ -13,6 +13,7 @@ import { getCurrentUser } from "../../Utils/currentUser";
 import SearchList from "./SearchList";
 import "./topbar.css";
 import { io } from "socket.io-client";
+import Popup from "../../components/Popup/Popup";
 
 export default function Topbar(props) {
 
@@ -79,12 +80,11 @@ export default function Topbar(props) {
             message: content,
         });
     };
+    const [userInfoPopup, setBtnState] = useState(false);
 
 
 
     function handleChange(event) {
-        console.log(event.target.value);
-        console.log(isFirstName + " " + isLastName + " " + isEmail)
 
         var choose = event.target.value;
         if (choose == 1) {
@@ -113,7 +113,6 @@ export default function Topbar(props) {
 
         }
 
-        console.log(isFirstName + " " + isLastName + " " + isEmail)
     }
 
     return (
@@ -176,11 +175,12 @@ export default function Topbar(props) {
             </div>
             <div className="topbarRight">
                 <div className="topbarImage">
-                    <Button className="topbarImage" variant="outlined" onClick={(e) => {
-                        props.onUserTap()
-                    }} >
+                    <Button className="topbarImage" variant="outlined" setTrigger={setBtnState} trigger={userInfoPopup} onClick={() => {
+                        setBtnState(true)
+                    }}  >
                         <Person />
                     </Button>
+                    <Popup trigger={userInfoPopup} setTrigger={setBtnState} />
                     <Button variant="outlined" onClick={(e) => {
                         onClickLogOut(isUserNameExists, isUserPasswordExists)
                     }} >
